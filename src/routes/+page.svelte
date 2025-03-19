@@ -40,5 +40,7 @@
         <a href="tel:3162833442"><button>Call</button></a>
         <a href="mailto:newtonbkreviews@sbcglobal.net"><button>Email</button></a>
     </div>
+    <p class="pcontact">Phone: 316-283-3442</p>
+    <p class="pcontact">Email: newtonbkreviews@sbcglobal.net</p>
     <p class="pcontact">707 N Main ST, Newton, Kansas 671114</p>
 </footer>
