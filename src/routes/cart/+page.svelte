@@ -111,7 +111,7 @@
         width: 12rem;
         height: 3rem;
         font-size: 2rem;
-        padding: .2rem;
+        padding: .2rem ;
     }
     .checkout-btn:hover {
         background-color: #f58f20;
