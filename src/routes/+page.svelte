@@ -14,12 +14,12 @@
 <p class="pinfo">A world of books can be found in our quaint Main Street shop! All proceeds are donated to charitable organizations in Harvey County. Our volunteer staff is ready to help you find that special book.</p>
 
 <div class="imgcont">
-    <img src="../static/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
-    <img src="../static/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
-    <img src="../static/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
-    <img src="../static/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
-    <img src="../static/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
-    <img src="../static/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
+    <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
+    <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
+    <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
+    <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
+    <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
+    <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
 </div>
 
 <div id="about">
@@ -28,8 +28,8 @@
 </div>
 
 <div class="imgcont">
-    <img src="../static/images/salvationdonation.jpg" alt="Book ReViews manager Cheryl Major donating to the Salvation Army in Newton, Kansas" class="donateimg">
-    <img src="../static/images/responderdonation.jpg" alt="Book ReViews donating to Harvey County First Responders for Food Baskets" class="donateimg">
+    <img src="/images/salvationdonation.jpg" alt="Book ReViews manager Cheryl Major donating to the Salvation Army in Newton, Kansas" class="donateimg">
+    <img src="/images/responderdonation.jpg" alt="Book ReViews donating to Harvey County First Responders for Food Baskets" class="donateimg">
 </div>
     <!-- svelte-ignore a11y_figcaption_parent -->
 <figcaption>Book ReViews Donating to different charitable organizations in Harvey County.</figcaption>
