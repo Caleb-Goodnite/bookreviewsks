@@ -25,6 +25,10 @@
 <div id="about">
     <h2>About Us</h2>
     <p>We sell used and vintage books to support charitable organization in Harevey County.</p>
+    <h2>Business Hours:</h2>
+    <p>Monday - Friday: 9:30 - 5:30</p>
+    <p>Saturday - 9:30 - 5:00</p>
+    <p>Sunday - Closed</p>
 </div>
 
 <div class="imgcont">
