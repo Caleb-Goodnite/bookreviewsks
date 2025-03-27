@@ -174,10 +174,10 @@ figcaption {
     font-family: monospace;
 }
 
-@media(max-width: 600px){
+@media (max-width: 600px){
     #navbutton{
-        width: 3em;
-        height: 1em;
-        font-size: .8em;
+        width: 7em;
+        height: 3em;
+        font-size: .6em;
     }
 }
