@@ -91,13 +91,29 @@
     h3 {
         text-align: center;
     }
+
     .book-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusts for smaller screens */
         gap: 16px;
         padding: 20px;
         max-width: 90vw;
+        margin: 0 auto; /* Centers the grid */
+        justify-content: center; /* Centers grid content */
     }
+
+    @media (max-width: 600px) { /* Apply only on smaller screens */
+    .book-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusts for smaller screens */
+        gap: 16px;
+        padding: 20px;
+        max-width: 90vw;
+        margin: 0 auto; /* Centers the grid */
+        justify-content: center; /* Centers grid content */
+    }
+}
+
     .book {
         border: 1px solid #ccc;
         padding: 15px;

@@ -176,9 +176,9 @@ figcaption {
 
 @media (max-width: 600px){
     #navbutton{
-        width: 6em;
+        width: 5.8em;
         height: 3em;
-        font-size: .6em;
+        font-size: .6.2em;
     }
     #brlogoimgcont{
         display: none;
