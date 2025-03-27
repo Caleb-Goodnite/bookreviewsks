@@ -12,7 +12,7 @@
 <h1><u>Book ReViews</u></h1>
 <p class="pinfo">A world of books can be found in our quaint Main Street shop! All proceeds are donated to charitable organizations in Harvey County. Our volunteer staff is ready to help you find that special book.</p>
 
-<div class="imgcont">
+<div class="imgcont" id="brlogoimgcont">
     <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
     <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
     <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
