@@ -178,5 +178,6 @@ figcaption {
     #navbutton{
         width: 3em;
         height: 1em;
+        font-size: .8em;
     }
 }
