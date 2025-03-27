@@ -10,7 +10,7 @@ html {
 
 nav{
     background-color: rgb(82, 135, 148);
-    padding: .2rem;
+    padding: 1em;
 }
 
 body {
@@ -129,7 +129,7 @@ img {
 .imgcont {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem;
     padding-bottom: 1rem;
 }
 
@@ -182,5 +182,12 @@ figcaption {
     }
     #brlogoimgcont{
         display: none;
+    }
+    #errormobile{
+        font-size: .9rem;
+    }
+    nav{
+        display: flex;
+        justify-content: center;
     }
 }

@@ -96,6 +96,7 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 16px;
         padding: 20px;
+        max-width: 90vw;
     }
     .book {
         border: 1px solid #ccc;
@@ -106,7 +107,7 @@
         font-family: monospace;
     }
     .cartbtn {
-        background-color: #f5a623;
+        background-color: rgb(90, 100, 70);
         border: none;
         padding: 10px;
         border-radius: 5px;
