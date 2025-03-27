@@ -8,6 +8,11 @@ html {
     text-decoration: underline;
 }
 
+nav{
+    background-color: rgb(82, 135, 148);
+    padding: .2rem;
+}
+
 body {
     background-color: rgb(92, 145, 158);
     font-family: Arial, sans-serif;
@@ -64,6 +69,7 @@ button:hover {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
+    color: white;
 }
 
 .searchinput:focus {
@@ -166,4 +172,17 @@ figcaption {
 ::placeholder{
     color: white;
     font-family: monospace;
+}
+
+@media(min-width: 600px){
+    #navbutton{
+        width: 25vw;
+    }
+    #navcont{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+
+    }
 }

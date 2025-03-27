@@ -7,6 +7,13 @@
     onMount(() => {
         // Get cart from localStorage
         cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Ensure all items in cart have a quantity, defaulting to 1
+        cart.forEach(item => {
+            if (!item.quantity) {
+                item.quantity = 1;
+            }
+        });
     });
 
     // Remove an item from the cart
@@ -19,14 +26,24 @@
     function updateQuantity(bookId, quantity) {
         const bookInCart = cart.find(item => item.id === bookId);
         if (bookInCart) {
-            bookInCart.quantity = quantity;
+            bookInCart.quantity = parseInt(quantity); // Ensure quantity is an integer
             localStorage.setItem('cart', JSON.stringify(cart));
         }
     }
 
-    // Calculate total cart value (just for demonstration)
+    // Calculate total cart value
     function getTotal() {
         return cart.reduce((total, item) => total + (item.Price * item.quantity), 0).toFixed(2);
+    }
+
+    // Proceed to checkout
+    function checkout() {
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+        // Assuming your checkout logic is handled elsewhere
+        window.location.href = '/checkout'; // Redirect to checkout page
     }
 </script>
 
@@ -34,11 +51,11 @@
 
 <nav>
     <div class="btncont">
-    <a href="/"><button>Home</button></a>
-    <a href="/inventory"><button>Inventory</button></a>
-    <a href="/#about"><button>About Us</button></a>
-    <a href="/cart"><button>Cart</button></a>
-    <a href="/checkout"><button>Checkout</button></a>
+        <a href="/"><button>Home</button></a>
+        <a href="/inventory"><button>Inventory</button></a>
+        <a href="/#about"><button>About Us</button></a>
+        <a href="/cart"><button>Cart</button></a>
+        <a href="/checkout"><button>Checkout</button></a>
     </div>
 </nav>
 <hr>
@@ -65,7 +82,7 @@
 
     <div class="cart-summary">
         <p class="pinfo">Total: ${getTotal()}</p>
-        <button class="checkout-btn">Checkout</button>
+        <a href="/checkout"><button class="checkout-btn">Checkout</button></a>
     </div>
 {/if}
 
