@@ -78,7 +78,10 @@
             <div class="book">
                 <h3>{book.title}</h3>
                 <p>Author: {book.author}</p>
-                <p>Price: ${book.Price}</p>
+                <p>ISBN: {book.Isbn}</p>
+                <p>Stock: {book.stock}</p>
+                <p>Price: {book.Price}</p>
+                <p>Condition: {book.condition}
                 <button class="cartbtn" on:click={() => addToCart(book)}>Add to Cart</button>
             </div>
         {/each}
