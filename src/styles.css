@@ -169,6 +169,10 @@ figcaption {
     height: 3rem;
 }
 
+#navhr{
+    display: none;
+}
+
 ::placeholder{
     color: white;
     font-family: monospace;
@@ -189,5 +193,9 @@ figcaption {
     nav{
         display: flex;
         justify-content: center;
+    }
+    #navhr{
+        border-color: white;
+        border-radius: .8rem;
     }
 }

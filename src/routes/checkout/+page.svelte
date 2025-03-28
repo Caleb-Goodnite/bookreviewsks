@@ -24,7 +24,9 @@
   <a href="/checkout"><button id="navbutton">Checkout</button></a>
   </div>
 </nav>
-
+<div id="navhr">
+  <hr>
+</div>
 <div class="checkout">
   <h2>Checkout</h2>
   <p><strong>Total: ${total}</strong></p>
