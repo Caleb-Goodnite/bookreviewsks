@@ -16,8 +16,8 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"@square/web-sdk": "^2.1.0",
 		"dotenv": "^16.4.7",
-		"pocketbase": "^0.25.2",
-		"square": "^42.0.0"
+		"pocketbase": "^0.25.2"
 	}
 }
