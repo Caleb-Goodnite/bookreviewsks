@@ -180,22 +180,38 @@ figcaption {
 
 @media (max-width: 800px){
     #navbutton{
-        width: 5.8em;
-        height: 3em;
-        font-size: 6.2em;
+        width: 100%;
+        height: auto;
+        font-size: 1.2rem;
+        padding: 0.5em;
+        margin: 0.3em 0;
     }
+    
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1em;
+    }
+    
+    .btncont {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+    
     #brlogoimgcont{
         display: none;
     }
+    
     #errormobile{
-        font-size: .9rem;
+        font-size: 0.9rem;
     }
-    nav{
-        display: flex;
-        justify-content: center;
-    }
+    
     #navhr{
+        display: block;
+        width: 100%;
         border-color: white;
-        border-radius: .8rem;
+        border-radius: 0.8rem;
     }
 }
