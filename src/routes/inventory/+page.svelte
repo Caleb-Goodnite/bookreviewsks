@@ -80,7 +80,7 @@
                 <p>ISBN: {book.Isbn}</p>
                 <p>Stock: {book.stock}</p>
                 <p>Price: {book.Price}</p>
-                <p>Condition: {book.condition}
+                <p>Condition: {book.condition}</p>
                 <button class="cartbtn" on:click={() => addToCart(book)}>Add to Cart</button>
             </div>
         {/each}
@@ -123,14 +123,15 @@
         font-family: monospace;
     }
     .cartbtn {
-        background-color: rgb(90, 100, 70);
+        background-color: rgb(88, 139, 154);
         border: none;
         padding: 10px;
         border-radius: 5px;
         color: white;
         cursor: pointer;
+        margin: auto;
     }
     .cartbtn:hover {
-        background-color: #f58f20;
+        background-color: #65ffa0;
     }
 </style>
