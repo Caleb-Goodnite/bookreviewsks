@@ -15,40 +15,51 @@
 
   let isCardFormLoading = true;
 
-  async function handlePayment() {
+  // Add this function to handle tokenization
+  async function tokenize(paymentMethod) {
+    const tokenResult = await paymentMethod.tokenize();
+    if (tokenResult.status === 'OK') {
+      return tokenResult.token;
+    } else {
+      let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
+      if (tokenResult.errors) {
+        errorMessage += ` and errors: ${JSON.stringify(tokenResult.errors)}`;
+      }
+      throw new Error(errorMessage);
+    }
+  }
+
+  // Modified payment handler based on Square docs
+  async function handlePayment(event) {
+    event.preventDefault();
     errorMessage = '';
     successMessage = '';
     isProcessing = true;
   
     try {
-      const result = await card.tokenize();
-      if (result.status === 'OK') {
-        const response = await fetch('/api/process-payment', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            token: result.token,
-            amount: total
-          })
-        });
-  
-        const data = await response.json();
-        
-        if (data.success) {
-          successMessage = 'Payment processed successfully!';
-          localStorage.setItem('cart', '[]');
-          setTimeout(() => {
-            window.location.href = '/payment-success';
-          }, 2000);
-        } else {
-          errorMessage = 'Payment failed. Please try again.';
-        }
+      const token = await tokenize(card);
+      const response = await fetch('/api/process-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token: token,
+          amount: total
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.success) {
+        successMessage = 'Payment processed successfully!';
+        localStorage.setItem('cart', '[]');
+        setTimeout(() => {
+          window.location.href = '/payment-success';
+        }, 2000);
       } else {
-        errorMessage = 'Payment failed. Please check your card details.';
-        console.error('Payment failed:', result.errors);
+        errorMessage = 'Payment failed. Please try again.';
       }
     } catch (e) {
-      errorMessage = 'Payment processing error. Please try again.';
+      errorMessage = 'Payment processing error: ' + e.message;
       console.error('Payment error:', e);
     } finally {
       isProcessing = false;
@@ -110,16 +121,19 @@
     {#if successMessage}
       <div class="success-message">{successMessage}</div>
     {/if}
-    {#if isCardFormLoading}
-      <div class="loading-message">Loading payment form...</div>
-    {/if}
-    <div id="card-container"></div>
-    <button 
-      on:click={handlePayment} 
-      class="pay-button" 
-      disabled={isProcessing || isCardFormLoading}>
-      {isProcessing ? 'Processing...' : `Pay $${total}`}
-    </button>
+    
+    <form on:submit|preventDefault={handlePayment}>
+      {#if isCardFormLoading}
+        <div class="loading-message">Loading payment form...</div>
+      {/if}
+      <div id="card-container"></div>
+      <button 
+        type="submit"
+        class="pay-button" 
+        disabled={isProcessing || isCardFormLoading}>
+        {isProcessing ? 'Processing...' : `Pay $${total}`}
+      </button>
+    </form>
   </div>
 </div>
 
