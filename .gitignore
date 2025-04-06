@@ -1,3 +1,6 @@
+# Add this line to your .gitignore file
+src/lib/credentials.js
+
 node_modules
 
 # Output
@@ -14,6 +17,7 @@ Thumbs.db
 
 # Env
 .env
+.env.public
 .env.*
 !.env.example
 !.env.test

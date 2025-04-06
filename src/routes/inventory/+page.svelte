@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import PocketBase from 'https://cdn.jsdelivr.net/npm/pocketbase@0.25.2/+esm';
+    import PocketBase from 'pocketbase';
     let books = [];
     let filteredBooks = [];
     let searchQuery = "";
@@ -36,20 +36,40 @@
     function addToCart(book) {
         // Check if book is already in the cart
         const bookInCart = cart.find(item => item.id === book.id);
+        const currentStock = parseInt(book.stock) || 0;
 
         if (bookInCart) {
+            // Check if adding one more would exceed stock
+            if (bookInCart.quantity + 1 > currentStock) {
+                alert(`Sorry, only ${currentStock} of "${book.title}" in stock.`);
+                return;
+            }
             // If the book is already in the cart, increment the quantity
             bookInCart.quantity += 1;
         } else {
+            // Check if we have stock before adding
+            if (currentStock < 1) {
+                alert(`Sorry, "${book.title}" is out of stock.`);
+                return;
+            }
             // Otherwise, add the book to the cart with quantity = 1
-            cart.push({...book, quantity: 1});
+            // Make sure to include all necessary book properties
+            cart.push({
+                id: book.id,
+                title: book.title,
+                author: book.author,
+                Price: book.Price,
+                stock: book.stock,
+                Isbn: book.Isbn,
+                condition: book.condition,
+                quantity: 1
+            });
         }
 
         // Persist cart in localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
         alert(`Added ${book.title} to your cart!`);
     }
-
 </script>
 
 <title>Book ReViews - Inventory</title>
