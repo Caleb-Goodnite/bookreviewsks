@@ -215,19 +215,8 @@
 
 <title>Check Out - Book ReViews</title>
 
-<nav id="navcont">
-  <div class="btncont">
-  <a href="/"><button id="navbutton">Home</button></a>
-  <a href="/inventory"><button id="navbutton">Inventory</button></a>
-  <a href="/#about"><button id="navbutton">About Us</button></a>
-  <a href="/cart"><button id="navbutton">Cart</button></a>
-  <a href="/checkout"><button id="navbutton">Checkout</button></a>
-  <a href="/volunteer-sign-up"><button id="navbutton">Volunteer</button></a>
-  </div>
-</nav>
-
 <div class="checkout">
-  <h2 style="font-size: 3rem; padding: 0px;">Checkout</h2>
+  <h1>Checkout</h1>
   
   <div class="checkout-container">
     <div class="checkout-left">
@@ -245,6 +234,25 @@
         <div class="total">
           <strong>Total: ${total}</strong>
         </div>
+      </div>
+      
+      <!-- Add these new sections to fill the empty space -->
+      <div class="checkout-info-card">
+        <div class="info-icon">📚</div>
+        <h4>Supporting Local Charities</h4>
+        <p>All proceeds from your purchase directly support Harvey County charitable organizations.</p>
+      </div>
+      
+      <div class="checkout-info-card">
+        <div class="info-icon">🚚</div>
+        <h4>Shipping Information</h4>
+        <p>Books will be prepared for shipping within 3-5 business days after your order is confirmed.</p>
+      </div>
+      
+      <div class="checkout-info-card">
+        <div class="info-icon">💳</div>
+        <h4>Secure Payment</h4>
+        <p>Your payment information is securely processed through Square's protected payment system.</p>
       </div>
     </div>
     
@@ -307,6 +315,7 @@
         {/if}
         
         <form on:submit|preventDefault={handlePayment}>
+          <h3>Payment Information</h3>
           {#if isCardFormLoading}
             <div class="loading-message">Loading payment form...</div>
           {/if}
@@ -323,194 +332,203 @@
   </div>
 </div>
 
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Contact Us</h3>
+      <p class="pcontact">Phone: 316-283-3442</p>
+      <p class="pcontact">Email: newtonbkreviews@sbcglobal.net</p>
+      <p class="pcontact">707 N Main ST, Newton, Kansas 67114</p>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/inventory">Inventory</a>
+        <a href="/#about">About Us</a>
+        <a href="/volunteer-sign-up">Volunteer</a>
+      </div>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Connect With Us</h3>
+      <div class="footer-buttons vertical">
+        <a href="tel:3162833442"><button>Call</button></a>
+        <a href="mailto:newtonbkreviews@sbcglobal.net"><button>Email</button></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2023 Book ReViews. All proceeds support Harvey County charities.</p>
+  </div>
+</footer>
+
 <style>
   .checkout {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 2rem auto;
     padding: 1rem;
+  }
+
+  .checkout h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: white;
   }
 
   .checkout-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     margin-top: 20px;
     box-sizing: border-box;
   }
 
   .checkout-left {
     flex: 1;
-    min-width: 280px;
+    min-width: 300px;
     box-sizing: border-box;
   }
 
   .checkout-right {
     flex: 2;
-    min-width: 320px; /* Further reduced */
-    max-width: 620px;
+    min-width: 320px;
+    max-width: 700px;
     box-sizing: border-box;
   }
 
-  .checkout-section, .order-summary {
-    background-color: #383838;
+  /* New styles for the info cards */
+  .checkout-info-card {
+    background-color: rgba(58, 54, 51, 0.7);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border: 1px solid #8b7d6b;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+  }
+  
+  .checkout-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  }
+  
+  .info-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .checkout-info-card h4 {
+    color: #e6dfd3;
+    margin: 10px 0;
+    font-size: 1.2rem;
+  }
+  
+  .checkout-info-card p {
+    color: white;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  
+  /* Enhance existing styles */
+  .checkout-section, .order-summary {
+    background-color: rgba(58, 54, 51, 0.8);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     box-sizing: border-box;
     width: 100%;
-    color: #ffffff;
+    color: #e6dfd3;
+    border: 1px solid #8b7d6b;
+    transition: box-shadow 0.3s ease;
   }
-
+  
+  .checkout-section:hover, .order-summary:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  }
+  
   .cart-item {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #555;
-  }
-
-  .total {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 2px solid #555;
-    text-align: right;
-    font-size: 1.2rem;
-  }
-
-  .checkout-section {
-    background-color: #383838;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    color: #ffffff;
-    box-sizing: border-box;
-    width: 100%;
-  }
-
-  .order-summary {
-    background-color: #383838;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    color: #ffffff;
-    box-sizing: border-box;
-    width: 100%;
-  }
-
-  h3 {
-    margin-top: 0;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-    color: #FFFFFF;
-  }
-
-  /* Remove duplicate form-row style and keep only this one */
-  .form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px; /* Reduced gap */
-    width: 100%;
-    box-sizing: border-box;
-    color: white;
+    padding: 12px 0;
+    border-bottom: 1px solid #8b7d6b;
+    transition: background-color 0.3s ease;
   }
   
-  .form-row .form-group {
-    flex: 1;
-    color: white;
-    min-width: 90px; /* Reduced minimum width */
-    box-sizing: border-box;
-  }
-
-  .form-group {
-    margin-bottom: 15px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .form-group input, .form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
+  .cart-item:hover {
+    background-color: rgba(139, 125, 107, 0.2);
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-left: -8px;
+    margin-right: -8px;
     border-radius: 4px;
-    background-color: rgb(150, 150, 150);
-    font-size: 16px;
-    box-sizing: border-box;
-    color: rgb(0, 0, 0);
   }
   
-  .form-row {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .form-row .form-group {
-    flex: 1;
-  }
-
-  #card-container {
-    min-height: 30px;
-    padding: 10px 10px 10px 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background: #383838;
-    box-sizing: border-box;
-    width: 100%;
-  }
-  
-  /* Remove the unused selectors and use :global for Square's elements */
-  :global(.sq-card-iframe),
-  :global(#card-container iframe) {
-    background: transparent !important;
-    border: none !important;
-  }
-
-  .loading-message {
-    text-align: center;
+  /* Add a subtle pattern background to the page */
+  .checkout {
+    max-width: 1200px;
+    margin: 2rem auto;
     padding: 1rem;
-    color: #666;
+    position: relative;
   }
-
+  
+  .checkout::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C9074' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  /* Make the payment button more prominent */
   .pay-button {
     width: 100%;
-    padding: 12px;
-    margin-top: 1rem;
-    background-color: #4CAF50;
+    padding: 16px;
+    margin-top: 1.5rem;
+    background-color: #8b7d6b;
     color: white;
     border: none;
     border-radius: 4px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
   }
-
+  
   .pay-button:hover {
-    background-color: #45a049;
+    background-color: #6d6253;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
   }
-
-  .error-message {
-    color: #d32f2f;
-    background-color: #ffebee;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 4px;
+  
+  .pay-button:after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255,255,255,0.2);
+    transform: rotate(30deg);
+    transition: all 0.6s ease;
   }
-
-  .success-message {
-    color: #2e7d32;
-    background-color: #e8f5e9;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 4px;
+  
+  .pay-button:hover:after {
+    left: 120%;
   }
-
-  .pay-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-
+  
+  /* Responsive adjustments */
   @media (max-width: 768px) {
     .checkout-container {
       flex-direction: column;
@@ -523,6 +541,10 @@
     .form-row {
       flex-direction: column;
       gap: 0;
+    }
+    
+    .checkout-info-card {
+      padding: 15px;
     }
   }
 </style>

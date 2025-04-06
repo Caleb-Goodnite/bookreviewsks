@@ -74,18 +74,6 @@
 
 <title>Book ReViews - Inventory</title>
 
-<nav id="navcont">
-    <div class="btncont">
-    <a href="/"><button id="navbutton">Home</button></a>
-    <a href="/inventory"><button id="navbutton">Inventory</button></a>
-    <a href="/#about"><button id="navbutton">About Us</button></a>
-    <a href="/cart"><button id="navbutton">Cart</button></a>
-    <a href="/checkout"><button id="navbutton">Checkout</button></a>
-    <a href="/volunteer-sign-up"><button id="navbutton">Volunteer</button></a>
-    </div>
-</nav>
-
-
 <h1>Inventory</h1>
 <div class="search-container">
     <input class="search" id="search" type="text" placeholder="Search entire inventory..." on:input={handleSearch}>
@@ -149,7 +137,7 @@
         font-family: monospace;
     }
     .cartbtn {
-        background-color: rgb(255, 226, 147);
+        background-color: rgb(182, 161, 121);
         border: none;
         padding: 10px;
         border-radius: 5px;
@@ -158,6 +146,6 @@
         margin: auto;
     }
     .cartbtn:hover {
-        background-color: #ffe865;
+        background-color: #fff2ab;
     }
 </style>
