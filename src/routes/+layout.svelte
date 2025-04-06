@@ -10,8 +10,16 @@
 </script>
 
 <nav>
-  <div class="logo">
-    <a href="/">Book ReViews</a>
+  <button class="hamburger-menu" on:click={toggleMobileMenu} aria-label="Toggle navigation menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  
+  <div class="nav-logo">
+    <a href="/">
+      <img src="/favicon.png" alt="Book ReViews Logo" />
+    </a>
   </div>
   
   <div class="btncont">
@@ -23,12 +31,6 @@
     <a href="/volunteer-sign-up"><button id="navbutton">Volunteer</button></a>
     <a href="/donations"><button id="navbutton">Donate</button></a>
   </div>
-  
-  <button class="hamburger-menu" on:click={toggleMobileMenu} aria-label="Toggle navigation menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
   
   <div class="mobile-nav" class:open={mobileMenuOpen}>
     <div class="mobile-nav-links">

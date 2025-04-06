@@ -33,6 +33,22 @@ h2, p {
 nav {
     background-color: rgb(148, 122, 82);
     padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* Add logo styles */
+.nav-logo {
+    margin-right: auto;
+    margin-left: 3.5rem; /* Space for hamburger menu */
+}
+
+.nav-logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
 }
 
 .btncont {
@@ -143,6 +159,10 @@ button:hover {
     position: relative;
     padding: 1.5em 1em;
     min-height: 3.5rem;
+  }
+  
+  .nav-logo {
+    margin: 0 auto; /* Center the logo on mobile */
   }
 }
 
