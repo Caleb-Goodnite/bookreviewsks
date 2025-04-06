@@ -9,20 +9,20 @@
   }
 </script>
 
-<nav>
+<nav style="display: flex; align-items: center; justify-content: space-between; padding: 1em; position: relative;">
   <button class="hamburger-menu" on:click={toggleMobileMenu} aria-label="Toggle navigation menu">
     <span></span>
     <span></span>
     <span></span>
   </button>
   
-  <div class="nav-logo">
+  <div class="nav-logo" style="margin-right: auto; margin-left: 1rem;">
     <a href="/">
-      <img src="/logo-high-res.png" alt="Book ReViews Logo" />
+      <img src="/logo-high-res.png" alt="Book ReViews Logo" style="height: 40px; width: auto;" />
     </a>
   </div>
   
-  <div class="btncont">
+  <div class="btncont" style="display: flex; justify-content: center; gap: 1.5rem; margin-left: auto;">
     <a href="/"><button id="navbutton">Home</button></a>
     <a href="/inventory"><button id="navbutton">Inventory</button></a>
     <a href="/#about"><button id="navbutton">About Us</button></a>
