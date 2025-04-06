@@ -29,54 +29,6 @@ h2, p {
     text-decoration: underline;
 }
 
-/* Navigation */
-nav {
-    background-color: rgb(148, 122, 82);
-    padding: 1em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-}
-
-/* Add logo styles */
-.nav-logo {
-    margin-right: auto;
-    margin-left: 3.5rem; /* Space for hamburger menu */
-}
-
-.nav-logo img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-}
-
-.btncont {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin: .2vh 0;
-}
-
-button {
-    background-color: #FFFFFF;
-    color: black;
-    border-radius: 0.2em;
-    transition: 0.2s;
-    width: 10em;
-    height: 3em;
-    box-shadow: 2px 2px .8em #FFFFFF;
-}
-
-button:hover {
-    background-color: grey;
-    transform: translateY(-0.1em);
-}
-
-#navhr {
-    display: none;
-}
-
 /* Hamburger Menu */
 /* Hamburger Menu Styles */
 .hamburger-menu {
@@ -92,7 +44,7 @@ button:hover {
   z-index: 10;
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  left: 1rem; /* Changed from right to left */
 }
 
 .hamburger-menu span {
