@@ -76,7 +76,7 @@
     {#if orderDetails}
       <div class="order-details">
         <h2>Order Details</h2>
-        <p>Order ID: {orderDetails.id}</p>
+        <p>Order Number: {orderDetails.orderNumber || orderDetails.id}</p>
         <p>Amount: ${orderDetails.amount || orderDetails.total}</p>
         
         {#if orderDetails.shippingInfo}

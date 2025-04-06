@@ -5,20 +5,26 @@
     let filteredBooks = [];
     let searchQuery = "";
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let loading = true;
 
     // Fetch books from PocketBase
     onMount(async () => {
         const pb = new PocketBase("https://book-reviews.pockethost.io");
 
         try {
+            // Explicitly request the 9 most recent books by creation date
             const response = await pb.collection("books").getList(1, 9, {
-                sort: "-created"
+                sort: "-created",
+                expand: "" // Add any needed expansions
             });
 
             books = response.items;
             filteredBooks = books; // Show all books initially
+            console.log("Fetched books:", books); // Log to verify
         } catch (error) {
             console.error("Error fetching books:", error);
+        } finally {
+            loading = false;
         }
     });
 
@@ -81,7 +87,9 @@
 
 <p><u>Books displayed are the 9 most recent additions to our inventory.</u></p>
 
-{#if filteredBooks.length === 0}
+{#if loading}
+    <p>Loading inventory...</p>
+{:else if filteredBooks.length === 0}
     <p>No books found.</p>
 {:else}
     <div class="book-grid">
@@ -108,25 +116,24 @@
 
     .book-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusts for smaller screens */
-        gap: 16px;
+        grid-template-columns: repeat(3, 1fr); /* Force 3 columns */
+        gap: 20px;
         padding: 20px;
-        max-width: 90vw;
+        max-width: 1200px; /* Set a max width */
         margin: 0 auto; /* Centers the grid */
-        justify-content: center; /* Centers grid content */
     }
 
-    @media (max-width: 600px) { /* Apply only on smaller screens */
-    .book-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusts for smaller screens */
-        gap: 16px;
-        padding: 20px;
-        max-width: 90vw;
-        margin: 0 auto; /* Centers the grid */
-        justify-content: center; /* Centers grid content */
+    @media (max-width: 900px) {
+        .book-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+        }
     }
-}
+
+    @media (max-width: 600px) {
+        .book-grid {
+            grid-template-columns: 1fr; /* 1 column on small screens */
+        }
+    }
 
     .book {
         border: 1px solid #ccc;

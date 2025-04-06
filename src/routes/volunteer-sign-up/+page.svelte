@@ -21,21 +21,40 @@
     
     let submitted = false;
     let error = null;
+    let submitting = false;
     
-    function handleSubmit() {
+    async function handleSubmit() {
       // Validate form
       if (!formData.name || !formData.email || !formData.phone) {
         error = "Please fill out all required fields";
         return;
       }
       
-      // Here you would typically send the data to your backend
-      // For now, we'll just simulate a successful submission
-      console.log("Form submitted:", formData);
+      submitting = true;
       
-      // Reset form and show success message
-      submitted = true;
-      error = null;
+      try {
+        // Send the form data to our API endpoint
+        const response = await fetch('/api/volunteer-signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to submit application');
+        }
+        
+        // Reset form and show success message
+        submitted = true;
+        error = null;
+      } catch (err) {
+        console.error("Error submitting form:", err);
+        error = "There was a problem submitting your application. Please try again.";
+      } finally {
+        submitting = false;
+      }
     }
     
     function handleInterestChange(interest) {
@@ -46,9 +65,9 @@
       }
     }
 </script>
-  
+
 <title>Volunteer - Book ReViews</title>
-  
+
 <div class="volunteer-container">
   <div class="volunteer-header">
     <h1>Volunteer at Book ReViews</h1>
@@ -183,7 +202,10 @@
             <textarea id="message" bind:value={formData.message} rows="3"></textarea>
           </div>
           
-          <button type="submit" class="submit-btn">Submit Application</button>
+          <!-- Update the submit button to show loading state -->
+          <button type="submit" class="submit-btn" disabled={submitting}>
+            {submitting ? 'Submitting...' : 'Submit Application'}
+          </button>
         </form>
       {/if}
     </div>
@@ -218,7 +240,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2023 Book ReViews. All proceeds support Harvey County charities.</p>
+    <p>&copy; 2025 Book ReViews. All proceeds support Harvey County charities.</p>
   </div>
 </footer>
   
