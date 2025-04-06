@@ -66,19 +66,21 @@
 </script>
 
 <nav id="navcont">
-    <div class="btncont">
-    <a href="/"><button id="navbutton">Home</button></a>
-    <a href="/inventory"><button id="navbutton">Inventory</button></a>
-    <a href="/#about"><button id="navbutton">About Us</button></a>
-    <a href="/cart"><button id="navbutton">Cart</button></a>
-    </div>
+  <div class="btncont">
+  <a href="/"><button id="navbutton">Home</button></a>
+  <a href="/inventory"><button id="navbutton">Inventory</button></a>
+  <a href="/#about"><button id="navbutton">About Us</button></a>
+  <a href="/cart"><button id="navbutton">Cart</button></a>
+  <a href="/checkout"><button id="navbutton">Checkout</button></a>
+  <a href="/volunteer-sign-up"><button id="navbutton">Volunteer</button></a>
+  </div>
 </nav>
 
 <div class="success-container">
   <div class="success-card">
     <div class="success-icon">✓</div>
     <h1>Thank you for your purchase!</h1>
-    <p>Your order has been successfully processed.</p>
+    <p>Your order has been successfully placed.</p>
     <p><u>Your order will be processed within 3-5 days</u></p>
 
     {#if orderDetails}
@@ -104,7 +106,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
           <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
         </svg>
-        Our team has been notified of your order and will process it soon.
+        Our team has been notified of your order and will ship it soon.
       </p>
       <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -121,9 +123,6 @@
 </div>
 
 <style>
-  body {
-    color: white;
-  }
   
   p {
     margin-bottom: 10px;

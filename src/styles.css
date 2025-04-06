@@ -2,26 +2,16 @@ html {
     scroll-behavior: smooth;
 }
 
-.pinfo{
-    font-size: 1.5rem;
-    color: white;
-    text-decoration: underline;
-}
-
-nav{
-    background-color: rgb(82, 135, 148);
-    padding: 1em;
-}
-
 body {
-    background-color: rgb(92, 145, 158);
-    font-family: Arial, sans-serif;
+    background-color: rgb(156, 144, 116);
+    font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
     margin: 0;
     padding: 0;
     color: white;
     height: 100vh;
 }
 
+/* Typography */
 h1 {
     text-align: center;
     font-size: 4rem;
@@ -29,7 +19,19 @@ h1 {
 
 h2, p {
     text-align: center;
-    font-family: monospace;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.pinfo {
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: underline;
+}
+
+/* Navigation */
+nav {
+    background-color: rgb(148, 122, 82);
+    padding: 1em;
 }
 
 .btncont {
@@ -59,6 +61,7 @@ button:hover {
     display: flex;
     justify-content: center;
     padding: 20px;
+    padding: 1rem;
 }
 
 .searchinput {
@@ -75,6 +78,19 @@ button:hover {
 .searchinput:focus {
     border-color: #0066cc;
     outline: none;
+}
+
+.search {
+    border-radius: .2rem;
+    background: rgb(150, 150, 150);
+    border-color: white;
+    width: 12rem;
+    height: 3rem;
+}
+
+::placeholder {
+    color: white;
+    font-family: monospace;
 }
 
 /* Books List */
@@ -113,10 +129,13 @@ button:hover {
     align-items: center;
 }
 
-/* Footer */
-footer {
-    background-color: rgb(34, 34, 34);
-    padding: 1rem;
+.cartcont {
+    gap: 2rem;
+    background-color: teal;
+}
+
+.checkoutbtn {
+    width: 90%;
     text-align: center;
 }
 
@@ -131,6 +150,26 @@ img {
     justify-content: center;
     gap: 3rem;
     padding-bottom: 1rem;
+}
+
+#brlogoimgcont {
+   background-color: rgb(148, 122, 82); 
+   padding: 1rem;
+   border-radius: 1rem;
+   max-width: 55%; /* Control the width */
+   margin: 0 auto; /* Center the container */
+   box-sizing: border-box; /* Include padding in width calculation */
+}
+
+#storefrontcont {
+    display: flex;
+    justify-content: center;
+}
+
+#storefront {
+    width: 20em;
+    height: 20em;
+    padding: 1em;
 }
 
 .brlogoimg {
@@ -150,36 +189,21 @@ figcaption {
     font-family: monospace;
 }
 
-.checkoutbtn{
-    width: max-content;
+/* Footer */
+footer {
+    background-color: rgb(34, 34, 34);
+    padding: 1rem;
     text-align: center;
-    width: 90%;
 }
 
-.cartcont {
-    gap: 2rem;
-    background-color: teal;
-}
-
-.search{
-    border-radius: .2rem;
-    background: rgb(150, 150, 150);
-    border-color: white;
-    width: 12rem;
-    height: 3rem;
-}
-
-#navhr{
+/* Hidden elements */
+#navhr {
     display: none;
 }
 
-::placeholder{
-    color: white;
-    font-family: monospace;
-}
-
-@media (max-width: 800px){
-    #navbutton{
+/* Responsive Design */
+@media (max-width: 800px) {
+    #navbutton {
         width: 100%;
         height: auto;
         font-size: 1.2rem;
@@ -200,18 +224,22 @@ figcaption {
         width: 100%;
     }
     
-    #brlogoimgcont{
+    #brlogoimgcont {
         display: none;
     }
     
-    #errormobile{
+    #errormobile {
         font-size: 0.9rem;
     }
     
-    #navhr{
+    #navhr {
         display: block;
         width: 100%;
         border-color: white;
         border-radius: 0.8rem;
+    }
+    #storefront {
+        width: 6em;
+        height: 6em;
     }
 }

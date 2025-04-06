@@ -118,6 +118,7 @@
     <a href="/#about"><button id="navbutton">About Us</button></a>
     <a href="/cart"><button id="navbutton">Cart</button></a>
     <a href="/checkout"><button id="navbutton">Checkout</button></a>
+    <a href="/volunteer-sign-up"><button id="navbutton">Volunteer</button></a>
     </div>
 </nav>
 

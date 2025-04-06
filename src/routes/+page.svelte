@@ -7,10 +7,16 @@
     <a href="/#about"><button id="navbutton">About Us</button></a>
     <a href="/cart"><button id="navbutton">Cart</button></a>
     <a href="/checkout"><button id="navbutton">Checkout</button></a>
+    <a href="/volunteer-sign-up"><button id="navbutton">Volunteer</button></a>
     </div>
 </nav>
+
 <h1><u>Book ReViews</u></h1>
-<p class="pinfo">A world of books can be found in our quaint Main Street shop! All proceeds are donated to charitable organizations in Harvey County. Our volunteer staff is ready to help you find that special book.</p>
+<p class="pinfo">A world of books can be found in our quaint Main Street shop! All proceeds are donated to charitable organizations in Harvey County. <br> Our volunteer staff is ready to help you find that special book.</p>
+
+<div id="storefrontcont">
+    <img src="/images/storefront.jpg" alt="Book ReViews Store from front" id="storefront">
+</div>
 
 <div class="imgcont" id="brlogoimgcont">
     <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
@@ -23,7 +29,8 @@
 
 <div id="about">
     <h2>About Us</h2>
-    <p>We sell used and vintage books to support charitable organization in Harevey County.</p>
+    <p style="font-size: 1.5em">We sell used and vintage books to support charitable organizations in Harevey County.</p>
+
     <h2>Business Hours:</h2>
     <p>Monday - Friday: 9:30 - 5:30</p>
     <p>Saturday: 9:30 - 5:00</p>
@@ -35,7 +42,7 @@
     <img src="/images/responderdonation.jpg" alt="Book ReViews donating to Harvey County First Responders for Food Baskets" class="donateimg">
 </div>
     <!-- svelte-ignore a11y_figcaption_parent -->
-<figcaption>Book ReViews Donating to different charitable organizations in Harvey County.</figcaption>
+<figcaption style="padding-bottom: .4em;">Book ReViews Donating to different charitable organizations in Harvey County.</figcaption>
 
 <footer>
     <p class="pcontact">Contact Us:</p>

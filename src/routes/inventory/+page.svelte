@@ -81,11 +81,15 @@
     <a href="/#about"><button id="navbutton">About Us</button></a>
     <a href="/cart"><button id="navbutton">Cart</button></a>
     <a href="/checkout"><button id="navbutton">Checkout</button></a>
+    <a href="/volunteer-sign-up"><button id="navbutton">Volunteer</button></a>
     </div>
 </nav>
 
+
 <h1>Inventory</h1>
-<input class="search" id="search" type="text" placeholder="Search entire inventory..." on:input={handleSearch}>
+<div class="search-container">
+    <input class="search" id="search" type="text" placeholder="Search entire inventory..." on:input={handleSearch}>
+</div>
 
 <p><u>Books displayed are the 9 most recent additions to our inventory.</u></p>
 
@@ -99,9 +103,11 @@
                 <p>Author: {book.author}</p>
                 <p>ISBN: {book.Isbn}</p>
                 <p>Stock: {book.stock}</p>
-                <p>Price: {book.Price}</p>
+                <p>Price: ${book.Price}</p>
                 <p>Condition: {book.condition}</p>
-                <button class="cartbtn" on:click={() => addToCart(book)}>Add to Cart</button>
+                <div style="display: flex;">
+                    <button class="cartbtn" on:click={() => addToCart(book)}>Add to Cart</button>
+                </div>
             </div>
         {/each}
     </div>
@@ -143,7 +149,7 @@
         font-family: monospace;
     }
     .cartbtn {
-        background-color: rgb(88, 139, 154);
+        background-color: rgb(255, 226, 147);
         border: none;
         padding: 10px;
         border-radius: 5px;
@@ -152,6 +158,6 @@
         margin: auto;
     }
     .cartbtn:hover {
-        background-color: #65ffa0;
+        background-color: #ffe865;
     }
 </style>
