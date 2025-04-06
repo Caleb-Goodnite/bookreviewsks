@@ -10,6 +10,10 @@
 </script>
 
 <nav>
+  <div class="logo">
+    <a href="/">Book ReViews</a>
+  </div>
+  
   <div class="btncont">
     <a href="/"><button id="navbutton">Home</button></a>
     <a href="/inventory"><button id="navbutton">Inventory</button></a>
