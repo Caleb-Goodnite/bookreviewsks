@@ -810,24 +810,31 @@ footer {
     }
 }
 
-/* Navigation - Updated to fix desktop centering */
+/* Navigation - Updated to fix button centering */
 nav {
     background-color: rgb(148, 122, 82);
     padding: 1em;
     display: flex;
     align-items: center;
+    justify-content: center; /* Center all content */
     position: relative;
 }
 
 .btncont {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Center the buttons */
     gap: 1.5rem;
-    margin: 0 auto; /* Center the buttons */
-    padding-left: 2rem; /* Less space for logo */
+    margin: 0 auto; /* Center in available space */
+    padding-left: 0; /* Remove left padding */
 }
 
-/* Fix button styles but be more specific about which buttons */
+/* Logo positioning adjusted for centered buttons */
+.nav-logo {
+    position: absolute;
+    left: 1rem;
+}
+
+/* Fix button styles */
 #navbutton, .navbutton {
     background-color: #FFFFFF;
     color: black;
