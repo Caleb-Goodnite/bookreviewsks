@@ -809,3 +809,21 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* Logo styles */
+.nav-logo {
+  position: absolute;
+  left: 4rem;
+}
+
+.nav-logo img {
+  height: 40px; /* Adjust based on your navbar height */
+  width: auto; /* Maintain aspect ratio */
+  object-fit: contain;
+}
+
+@media (max-width: 800px) {
+  .nav-logo img {
+    height: 35px; /* Slightly smaller on mobile */
+  }
+}

@@ -5,7 +5,7 @@
   
   function toggleMobileMenu() {
     mobileMenuOpen = !mobileMenuOpen;
-    console.log("Menu toggled:", mobileMenuOpen); // For debugging
+    console.log("Menu toggled:", mobileMenuOpen);
   }
 </script>
 
@@ -18,7 +18,7 @@
   
   <div class="nav-logo">
     <a href="/">
-      <img src="/favicon.png" alt="Book ReViews Logo" />
+      <img src="/logo-high-res.png" alt="Book ReViews Logo" />
     </a>
   </div>
   
