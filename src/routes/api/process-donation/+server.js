@@ -17,8 +17,9 @@ export async function POST({ request }) {
     // Convert amount to cents (Square requires amount in cents)
     const amountInCents = Math.round(numAmount * 100);
     
-    // Generate a unique idempotency key
-    const idempotencyKey = `donation_${Date.now()}_${crypto.randomUUID()}`;
+    // Generate a unique idempotency key (keeping under 45 character limit)
+    const timestamp = Date.now().toString().slice(-8); // Use last 8 digits of timestamp
+    const idempotencyKey = `don_${timestamp}${Math.floor(Math.random() * 10000)}`; // Much shorter key
     
     // Create payment request body
     const paymentBody = {
@@ -29,7 +30,7 @@ export async function POST({ request }) {
         currency: 'USD'
       },
       location_id: env.SQUARE_LOCATION_ID,
-      note: "Donation to Book ReViews"
+      note: "Donation" // Shorter note
     };
     
     // Make the payment request to Square

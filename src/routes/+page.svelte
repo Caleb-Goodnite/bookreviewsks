@@ -1,11 +1,17 @@
 <script>
     import { onMount } from 'svelte';
+    import { page } from '$app/stores';
     
     let scrollPosition = 0;
     let isScrolling = false;
     let scrollSpeed = 0.5;
     let animationFrame;
     let imagesLoaded = false;
+    
+    // SEO metadata specific to homepage
+    const pageTitle = "Book ReViews | Used Books in Newton, Kansas | Non-Profit Bookstore";
+    const pageDescription = "Book ReViews is Newton, Kansas' premier used bookstore supporting Harvey County charities. Browse our inventory, donate books, or volunteer today!";
+    const pageKeywords = "book reviews kansas, book reviews ks, used bookstore newton ks, harvey county books, book donations newton, volunteer newton kansas";
     
     // Preload images to prevent stuttering
     function preloadImages() {
@@ -97,12 +103,69 @@
       };
     });
 </script>
+
+<svelte:head>
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription}>
+  <meta name="keywords" content={pageKeywords}>
   
+  <!-- Additional SEO tags for homepage -->
+  <link rel="canonical" href={$page.url.href}>
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content={pageTitle}>
+  <meta property="og:description" content={pageDescription}>
+  <meta property="og:image" content="/images/storefront.jpg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:title" content={pageTitle}>
+  <meta property="twitter:description" content={pageDescription}>
+  <meta property="twitter:image" content="/images/storefront.jpg">
+  
+  <!-- Structured Data / Schema.org for Local Business -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Book ReViews",
+    "image": "/images/storefront.jpg",
+    "@id": "https://bookreviewsks.com",
+    "url": "https://bookreviewsks.com",
+    "telephone": "316-283-3442",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "707 N Main ST",
+      "addressLocality": "Newton",
+      "addressRegion": "KS",
+      "postalCode": "67114",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 38.0464,
+      "longitude": -97.3452
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:30",
+        "closes": "17:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:30",
+        "closes": "17:00"
+      }
+    ],
+    "description": "Book ReViews is a non-profit used bookstore in Newton, Kansas. All proceeds are donated to charitable organizations in Harvey County."
+  }
+  </script>
+</svelte:head>
 
-<title>Book ReViews | Used books in Newton, Kansas</title>
-
-<h1><u>Book ReViews</u></h1>
-<p class="pinfo" style="text-decoration: none;">A world of books can be found in our quaint Main Street shop! All proceeds are donated to charitable organizations in Harvey County. <br> Our volunteer staff is ready to help you find that special book.</p>
+<h1><u>Book ReViews - Newton, Kansas</u></h1>
+<p class="pinfo" style="text-decoration: none;">A world of books can be found in our quaint Main Street shop in Newton, Kansas! All proceeds from our used bookstore are donated to charitable organizations in Harvey County. <br> Our volunteer staff is ready to help you find that special book in our extensive inventory.</p>
 
 <div id="storefrontcont">
     <img src="/images/storefront.jpg" alt="Book ReViews Store from front" id="storefront">
