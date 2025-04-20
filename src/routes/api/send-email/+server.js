@@ -27,8 +27,8 @@ export async function POST({ request }) {
     const cartItems = orderDetails.cart || [];
     const total = orderDetails.total || '0.00';
     
-    // Use the payment ID as the order reference number
-    const orderNumber = orderDetails.id || `ORDER-${Date.now()}`;
+    // Use the Square payment/order ID as the order number, fallback if missing
+    const orderNumber = orderDetails.id || 'Not Available';
     
     // Create HTML for cart items
     const itemsHtml = cartItems.map(item => `
@@ -51,6 +51,15 @@ export async function POST({ request }) {
           <p><strong>Order Number:</strong> ${orderNumber}</p>
           <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
           
+          <h3>Customer Information</h3>
+          <p><strong>Name:</strong> ${orderDetails.shippingInfo?.name || ''}</p>
+          <p><strong>Email:</strong> ${customerEmail || ''}</p>
+          <p><strong>Address:</strong><br>
+            ${orderDetails.shippingInfo?.line1 || ''}<br>
+            ${orderDetails.shippingInfo?.line2 ? orderDetails.shippingInfo.line2 + '<br>' : ''}
+            ${orderDetails.shippingInfo?.city || ''}, ${orderDetails.shippingInfo?.state || ''} ${orderDetails.shippingInfo?.zip || ''}
+          </p>
+          
           <h3>Items Ordered:</h3>
           <table style="width: 100%; border-collapse: collapse;">
             <tr style="background-color: #f2f2f2;">
@@ -66,16 +75,6 @@ export async function POST({ request }) {
           </table>
         </div>
         
-        <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0;">
-          <h2 style="margin-top: 0;">Shipping Information</h2>
-          <p>
-            ${orderDetails.shippingInfo?.name || ''}<br>
-            ${orderDetails.shippingInfo?.line1 || ''}<br>
-            ${orderDetails.shippingInfo?.line2 ? orderDetails.shippingInfo.line2 + '<br>' : ''}
-            ${orderDetails.shippingInfo?.city || ''}, ${orderDetails.shippingInfo?.state || ''} ${orderDetails.shippingInfo?.zip || ''}
-          </p>
-        </div>
-        
         <p>If you have any questions about your order, please don't hesitate to contact us.</p>
         
         <hr style="border: 1px solid #eee; margin: 20px 0;">
@@ -83,7 +82,7 @@ export async function POST({ request }) {
           <p>If you have any questions about your order, please contact us:</p>
           <p>Email: newtonbkreviews@sbcglobal.net</p>
           <p>Phone: (316) 283-3442</p>
-          <p><strong>Reference Order Number:</strong> ${orderNumber}</p>
+          <p><strong>Order Number:</strong> ${orderNumber}</p>
         </div>
       </div>
     `;

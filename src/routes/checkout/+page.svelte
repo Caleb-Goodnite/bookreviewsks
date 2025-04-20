@@ -96,6 +96,7 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               orderDetails: {
+                id: data.payment.id, // Square order/payment ID
                 cart: cart,
                 total: total,
                 shippingInfo: shippingInfo
