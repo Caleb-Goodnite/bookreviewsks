@@ -360,7 +360,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2023 Book ReViews. All proceeds support Harvey County charities.</p>
+    <p>&copy; 2025 Book ReViews. All proceeds support Harvey County charities.</p>
   </div>
 </footer>
 
