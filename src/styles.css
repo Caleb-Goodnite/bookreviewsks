@@ -214,14 +214,6 @@ img {
     padding-bottom: 1rem;
 }
 
-#brlogoimgcont {
-   background-color: rgb(148, 122, 82); 
-   padding: 1rem;
-   border-radius: 1rem;
-   max-width: 55%;
-   margin: 0 auto;
-   box-sizing: border-box;
-}
 
 #storefrontcont {
     display: flex;

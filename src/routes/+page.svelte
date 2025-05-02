@@ -251,6 +251,7 @@
                 <a href="/inventory">Inventory</a>
                 <a href="/#about">About Us</a>
                 <a href="/volunteer-sign-up">Volunteer</a>
+                <a href="/policies">Policies</a>
             </div>
         </div>
         
