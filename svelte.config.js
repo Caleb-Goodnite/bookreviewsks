@@ -4,8 +4,9 @@ import adapter from '@sveltejs/adapter-netlify';
 const config = {
   kit: {
     adapter: adapter({
-      // Netlify adapter handles the routing automatically
-      edge: false,
+      // Enable edge functions for better performance
+      edge: true,
+      // Keep the function as a single file
       split: false
     }),
     // Handle client-side routing
@@ -14,7 +15,13 @@ const config = {
     },
     // Prerender all pages
     prerender: {
-      entries: ['*']
+      entries: ['*'],
+      handleHttpError: 'warn'
+    },
+    // Enable client-side routing
+    alias: {
+      $lib: './src/lib',
+      $components: './src/components'
     }
   }
 };
