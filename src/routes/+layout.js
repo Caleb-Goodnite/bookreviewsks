@@ -1,6 +1,8 @@
-// Enable prerendering and SPA mode for Netlify
-export const prerender = true;
-export const ssr = false; // Disable server-side rendering for SPA mode
+// Enable SPA mode
+export const ssr = false;
 
-// This ensures all routes are handled by the SPA
+// Enable prerendering
+export const prerender = true;
+
+// Ensure consistent URL handling
 export const trailingSlash = 'always';
