@@ -1,11 +1,30 @@
 <script>
+    // import ReCaptcha from '../../components/ReCaptcha.svelte';
+  // let verifiedRecaptchaToken = null; // reCAPTCHA disabled
   import { env } from '$env/dynamic/public';
+
+  // function handleRecaptchaVerified(event) { // reCAPTCHA disabled
+  //   verifiedRecaptchaToken = event.detail.token;
+  //   errorMessage = ''; 
+  // }
+
+  // function handleRecaptchaExpired() { // reCAPTCHA disabled
+  //   verifiedRecaptchaToken = null;
+  //   errorMessage = 'reCAPTCHA expired. Please try again.';
+  // }
+
+  // function handleRecaptchaError(event) { // reCAPTCHA disabled
+  //   verifiedRecaptchaToken = null;
+  //   errorMessage = event.detail?.message || 'reCAPTCHA error. Please try again.';
+  //   console.error('reCAPTCHA component error:', event.detail);
+  // }
   import { onMount } from 'svelte';
+  
   let errorMessage = '';
   let successMessage = '';  
   let isProcessing = false;
 
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cart = []; // Initialize cart as an empty array
   let total = 0;
   let payments;
   let card;
@@ -24,11 +43,17 @@
 
   // Update the calculateTotal function to account for quantities
   const calculateTotal = () => {
+    console.log('Current cart:', cart); // Debug log
     total = cart.reduce((sum, book) => {
-      const price = parseFloat(book.Price) || 0;
+      // Handle both Price and price properties for backward compatibility
+      const priceValue = book.Price !== undefined ? book.Price : (book.price || 0);
+      const price = parseFloat(priceValue) || 0;
       const quantity = book.quantity || 1; // Default to 1 if quantity not specified
-      return sum + (price * quantity);
+      const itemTotal = price * quantity;
+      console.log(`Item: ${book.title}, Price: ${price}, Quantity: ${quantity}, Subtotal: ${itemTotal}`);
+      return sum + itemTotal;
     }, 0).toFixed(2);
+    console.log('Calculated total:', total); // Debug log
   };
 
   let isCardFormLoading = true;
@@ -49,6 +74,11 @@
 
   // Modified payment handler to include shipping info and validation
   async function handlePayment(event) {
+    // if (!verifiedRecaptchaToken) { // reCAPTCHA disabled
+    //   errorMessage = 'Please complete the reCAPTCHA verification before proceeding.';
+    //   isProcessing = false;
+    //   return;
+    // }
     event.preventDefault();
     errorMessage = '';
     successMessage = '';
@@ -69,28 +99,48 @@
     isProcessing = true;
   
     try {
-      const token = await tokenize(card);
-      console.log("Token generated:", token);
+      const cardToken = await tokenize(card);
+      const requestBody = {
+        token: cardToken,
+        clientAmount: total,  // Changed from 'amount' to 'clientAmount'
+        cart: cart.map(item => ({
+          id: item.id,
+          quantity: item.quantity,
+          title: item.title,
+          price: item.price || item.Price  // Handle both cases
+        })),
+        customerEmail: shippingInfo.email,  // Changed from 'email' to 'customerEmail'
+        shippingInfo: shippingInfo  // Changed from 'shippingAddress' to 'shippingInfo'
+      };
+      
+      console.log('Sending payment request with:', requestBody);
       
       const response = await fetch('/api/process-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          token: token,
-          amount: total,
-          cart: cart,
-          email: shippingInfo.email,
-          shippingAddress: shippingInfo
-        })
+        body: JSON.stringify(requestBody)
       });
 
-      const data = await response.json();
-      console.log("Payment response:", data);
+      const data = await response.json().catch(async (parseError) => {
+        // If JSON parsing fails, try to get the response as text
+        const errorText = await response.text();
+        console.error('Failed to parse JSON response:', errorText);
+        return { 
+          success: false, 
+          error: `Payment failed (${response.status}): ${errorText || 'Unknown error'}`
+        };
+      });
+
+      console.log('Payment response:', data);
       
+      if (!response.ok) {
+        const errorMessage = data.error || data.message || 'Payment failed. Please try again.';
+        console.error('Server error:', errorMessage, data);
+        throw new Error(errorMessage);
+      }
       if (data.success) {
         // Send confirmation emails
         try {
-          console.log("Sending email with cart:", cart);
           const emailResponse = await fetch('/api/send-email', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -106,10 +156,8 @@
           });
           
           const emailData = await emailResponse.json();
-          console.log("Email sending response:", emailData);
-          
           if (!emailData.success) {
-            console.error("Email sending failed:", emailData.error);
+            // Handle email sending failure silently
           }
         } catch (emailError) {
           console.error("Error sending emails:", emailError);
@@ -132,15 +180,22 @@
         errorMessage = data.error || 'Payment failed. Please try again.';
       }
     } catch (e) {
-      errorMessage = 'Payment processing error: ' + e.message;
       console.error('Payment error:', e);
+      errorMessage = 'Payment processing error: ' + (e.message || 'Unknown error occurred');
+      // Log payment error silently
     } finally {
       isProcessing = false;
     }
   }
 
   onMount(() => {
-    calculateTotal();
+    errorMessage = ''; // Clear any stale error messages on load
+    // Initialize cart from localStorage only on the client side
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      cart = JSON.parse(savedCart);
+    }
+    calculateTotal(); // Recalculate total after cart is loaded
     
     const script = document.createElement('script');
     script.src = "https://sandbox.web.squarecdn.com/v1/square.js";
@@ -151,7 +206,7 @@
         await card.attach('#card-container');
         isCardFormLoading = false;
       } catch (e) {
-        console.error('Error loading Square:', e);
+        // Log Square loading error silently
         errorMessage = 'Failed to load payment form. Please refresh the page.';
       }
     };
@@ -228,7 +283,7 @@
           {#each cart as item}
             <div class="cart-item">
               <span class="item-title">{item.title} ({item.quantity})</span>
-              <span class="item-price"> ${(parseFloat(item.Price) * item.quantity).toFixed(2)}</span>
+              <span class="item-price"> ${((parseFloat(item.Price || item.price || 0)) * item.quantity).toFixed(2)}</span>
             </div>
           {/each}
         </div>
@@ -321,6 +376,18 @@
             <div class="loading-message">Loading payment form...</div>
           {/if}
           <div id="card-container"></div>
+          
+          <!-- 
+          reCAPTCHA Component Disabled
+
+          <div class="recaptcha-container" style="margin-bottom: 1rem; display: flex; justify-content: center;">
+            <ReCaptcha 
+              on:verified={handleRecaptchaVerified} 
+              on:expired={handleRecaptchaExpired}
+              on:error={handleRecaptchaError} />
+          </div>
+          -->
+
           <button 
             type="submit"
             class="pay-button" 
@@ -352,14 +419,7 @@
         <a href="/policies">Policies</a>
       </div>
     </div>
-    
-    <div class="footer-section">
-      <h3>Connect With Us</h3>
-      <div class="footer-buttons vertical">
-        <a href="tel:3162833442"><button>Call</button></a>
-        <a href="mailto:newtonbkreviews@sbcglobal.net"><button>Email</button></a>
-      </div>
-    </div>
+
   </div>
   <div class="footer-bottom">
     <p>&copy; 2025 Book ReViews. All proceeds support Harvey County charities.</p>
@@ -550,3 +610,7 @@
     }
   }
 </style>
+
+
+<!-- <ReCaptcha bind:this={recaptchaComponent} /> -->
+<!-- <button on:click={handleSubmit}>Complete Checkout</button> -->

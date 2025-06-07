@@ -19,9 +19,16 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function POST({ request }) {
+  let pb;
   try {
     const data = await request.json();
     const { orderDetails, customerEmail } = data;
+
+    if (!env.POCKETBASE_URL) {
+      console.error('Missing POCKETBASE_URL for send-email endpoint.');
+      return json({ success: false, error: 'Server configuration error for email processing.' }, { status: 500 });
+    }
+    pb = new PocketBase(env.POCKETBASE_URL);
     
     // Get cart items and total
     const cartItems = orderDetails.cart || [];
@@ -165,11 +172,32 @@ export async function POST({ request }) {
       };
       
       await sendCustomerEmail();
+
+      // If customer email was successful, proceed to update inventory
+      try {
+        console.log('Attempting to update inventory for order:', orderNumber);
+        for (const item of cartItems) {
+          if (!item.id || !item.quantity) {
+            console.warn('Skipping inventory update for item with missing id or quantity:', item);
+            continue;
+          }
+          const bookRecord = await pb.collection('books').getOne(item.id);
+          const newStock = (parseInt(bookRecord.stock) || 0) - item.quantity;
+          await pb.collection('books').update(item.id, { stock: newStock < 0 ? 0 : newStock }); // Ensure stock doesn't go negative
+          console.log(`Updated stock for book ${item.id} (Order: ${orderNumber}) to ${newStock < 0 ? 0 : newStock}`);
+        }
+        console.log('Inventory update successful for order:', orderNumber);
+      } catch (inventoryUpdateError) {
+        console.error(`CRITICAL ERROR: Failed to update inventory for order ${orderNumber} after emails sent:`, inventoryUpdateError);
+        // Emails were sent, but inventory update failed. This needs to be flagged for manual intervention.
+        // The function will still return success to the caller (process-payment) as emails were sent,
+        // but this backend issue is severe.
+      }
       
       // Wait a bit before sending the owner email to avoid Gmail rate limits
       await new Promise(resolve => setTimeout(resolve, 5000));
       
-      // Send email to owner
+      // Send email to owner (inventory update is attempted before this, but after customer email)
       const ownerMailOptions = {
         from: '"Book ReViews System" <' + env.EMAIL_USER + '>',
         to: env.EMAIL_OWNER,

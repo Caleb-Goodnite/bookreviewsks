@@ -3,8 +3,32 @@ import { env } from '$env/dynamic/private';
 
 export async function POST({ request }) {
   try {
-    const { token, amount } = await request.json();
-    
+    const { token, amount /*, captchaToken*/ } = await request.json(); // captchaToken removed
+
+    // Verify Google reCAPTCHA - DISABLED
+    /*
+    if (!env.RECAPTCHA_SECRET_KEY) {
+      console.error('RECAPTCHA_SECRET_KEY is not set in environment variables.');
+      return json({ success: false, error: 'Server configuration error.' }, { status: 500 });
+    }
+    const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`
+    });
+    const recaptchaData = await recaptchaResponse.json();
+
+    if (!recaptchaData.success) {
+      console.error('reCAPTCHA verification failed:', recaptchaData['error-codes']);
+      return json({
+        success: false,
+        error: "CAPTCHA verification failed. Please try again."
+      }, { status: 400 });
+    }
+    */
+
     // Validate the amount
     const numAmount = parseFloat(amount);
     if (isNaN(numAmount) || numAmount <= 0) {

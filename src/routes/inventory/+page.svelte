@@ -4,11 +4,17 @@
     let books = [];
     let filteredBooks = [];
     let searchQuery = "";
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cart = []; // Initialize cart as an empty array
     let loading = true;
 
-    // Fetch books from PocketBase
+    // Fetch books from PocketBase and initialize cart from localStorage
     onMount(async () => {
+        // Initialize cart from localStorage only on the client side
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+            cart = JSON.parse(savedCart);
+        }
+
         const pb = new PocketBase("https://book-reviews.pockethost.io");
 
         try {
@@ -102,7 +108,7 @@
                 <p>Author: {book.author}</p>
                 <p>ISBN: {book.Isbn}</p>
                 <p>Stock: {book.stock}</p>
-                <p>Price: ${book.Price}</p>
+                <p>Price: ${Number(book.Price).toFixed(2)}</p>
                 <p>Condition: {book.condition}</p>
                 <div style="display: flex;">
                     <button class="cartbtn" on:click={() => addToCart(book)}>Add to Cart</button>

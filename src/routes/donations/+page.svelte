@@ -3,6 +3,10 @@
   import { goto } from '$app/navigation';
   import { PUBLIC_SQUARE_APP_ID, PUBLIC_SQUARE_LOCATION_ID } from '$env/static/public';
   
+  // import ReCaptcha from '../../components/ReCaptcha.svelte';
+  // let recaptchaComponent;
+  
+  
   let selectedAmount = null;
   let customAmount = '';
   let loading = false;
@@ -70,6 +74,13 @@
     loading = true;
     
     try {
+      // Execute reCAPTCHA - DISABLED
+      // const recaptchaToken = await recaptchaComponent.executeReCaptcha();
+      // if (!recaptchaToken) {
+      //   throw new Error('reCAPTCHA verification failed. Please try again.');
+      // }
+      const recaptchaToken = 'dummy-token-recaptcha-disabled'; // Provide a dummy token or handle appropriately
+
       // Get a payment token from the card element
       const result = await card.tokenize();
       if (result.status === 'OK') {
@@ -81,7 +92,8 @@
           },
           body: JSON.stringify({
             token: result.token,
-            amount: numAmount
+            amount: numAmount,
+            // recaptchaToken: recaptchaToken // Add reCAPTCHA token here - DISABLED
           })
         });
         
@@ -451,3 +463,7 @@
     </button>
   </div>
 </div>
+
+
+<!-- <ReCaptcha bind:this={recaptchaComponent} /> -->
+<!-- Remove the redundant button below -->

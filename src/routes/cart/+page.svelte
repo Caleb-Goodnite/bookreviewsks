@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import PocketBase from 'https://cdn.jsdelivr.net/npm/pocketbase@0.25.2/+esm';
+    import PocketBase from 'pocketbase';
 
     let cart = [];
     let stockErrors = [];
