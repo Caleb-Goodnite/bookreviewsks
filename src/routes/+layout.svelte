@@ -17,7 +17,7 @@
   // SEO metadata that will be used across the site
   const siteName = "Book ReViews";
   const siteDescription = "Book ReViews is a non-profit used bookstore in Newton, Kansas supporting Harvey County charities through book sales, donations & volunteer opportunities."; 
-  const siteKeywords = "book reviews, used books, newton kansas, harvey county, bookstore, non-profit, charity, donate books, volunteer";
+  const siteKeywords = "book reviews, used books, newton kansas, harvey county, bookstore, non-profit, charity, donate books, volunteer, book reviews kansas, newton book reviews, book, reviews, books, literature, reviews";
 </script>
 
 <svelte:head>
@@ -58,6 +58,7 @@
     <a href="/checkout"><button style="background-color: #FFFFFF; color: black; border-radius: 0.2em; transition: 0.2s; width: 10em; height: 3em; box-shadow: 2px 2px .8em #FFFFFF;">Checkout</button></a>
     <a href="/volunteer-sign-up"><button style="background-color: #FFFFFF; color: black; border-radius: 0.2em; transition: 0.2s; width: 10em; height: 3em; box-shadow: 2px 2px .8em #FFFFFF;">Volunteer</button></a>
     <a href="/donations"><button style="background-color: #FFFFFF; color: black; border-radius: 0.2em; transition: 0.2s; width: 10em; height: 3em; box-shadow: 2px 2px .8em #FFFFFF;">Donate</button></a>
+    <a href="/policies"><button style="background-color: #FFFFFF; color: black; border-radius: 0.2em; transition: 0.2s; width: 10em; height: 3em; box-shadow: 2px 2px .8em #FFFFFF;">Policies</button></a>
   </div>
   
   <div class="mobile-nav" class:open={mobileMenuOpen} style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(58, 54, 51, 0.95); z-index: 9; padding-top: 5rem; transform: translateX(-100%); transition: transform 0.3s ease-in-out;">

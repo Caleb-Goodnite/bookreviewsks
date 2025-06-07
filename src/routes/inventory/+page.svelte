@@ -12,15 +12,15 @@
         const pb = new PocketBase("https://book-reviews.pockethost.io");
 
         try {
-            // Explicitly request the 9 most recent books by creation date
-            const response = await pb.collection("books").getList(1, 9, {
-                sort: "-created",
-                expand: "" // Add any needed expansions
+            // Fetch all books for search functionality
+            const allBooksResponse = await pb.collection("books").getFullList({
+                sort: '-created'
             });
+            books = allBooksResponse;
 
-            books = response.items;
-            filteredBooks = books; // Show all books initially
-            console.log("Fetched books:", books); // Log to verify
+            // Set filtered books to show only the 9 most recent
+            filteredBooks = books.slice(0, 9);
+            console.log("Fetched books:", books);
         } catch (error) {
             console.error("Error fetching books:", error);
         } finally {
@@ -31,11 +31,14 @@
     // Handle search input
     function handleSearch(event) {
         searchQuery = event.target.value.toLowerCase();
-        filteredBooks = books.filter(book =>
+        const searchResults = books.filter(book =>
             book.title.toLowerCase().includes(searchQuery) ||
             book.author.toLowerCase().includes(searchQuery) ||
             book.Isbn.toLowerCase().includes(searchQuery)
         );
+        
+        // If there's no search query, show only the 9 most recent books
+        filteredBooks = searchQuery === "" ? books.slice(0, 9) : searchResults;
     }
 
     // Add a book to the cart
