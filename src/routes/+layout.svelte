@@ -118,8 +118,8 @@
     border: 1px solid #ccc; /* Added a subtle border */
     border-radius: 0.2em;
     transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    width: 10em;
-    height: 3em;
+    width: 8em;
+    height: 2.5em;
     box-shadow: 2px 2px .8em rgba(0,0,0,0.1); /* Softer shadow */
     cursor: pointer;
     font-family: inherit;

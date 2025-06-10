@@ -129,8 +129,8 @@
     "@type": "LocalBusiness",
     "name": "Book ReViews",
     "image": "/images/storefront.jpg",
-    "@id": "https://bookreviewsks.com",
-    "url": "https://bookreviewsks.com",
+    "@id": "https://bookreviewsks.netlify.app",
+    "url": "https://bookreviewsks.netlify.app",
     "telephone": "316-283-3442",
     "address": {
       "@type": "PostalAddress",
@@ -165,7 +165,7 @@
 </svelte:head>
 
 <h1><u>Book ReViews - Newton, Kansas</u></h1>
-<p class="pinfo" style="text-decoration: none;">A world of books can be found in our quaint Main Street shop in Newton, Kansas! All proceeds from our used bookstore are donated to charitable organizations in Harvey County. <br> Our volunteer staff is ready to help you find that special book in our extensive inventory.</p>
+<p class="pinfo" style="text-decoration: none;">A world of books can be found in our quaint Main Street shop in Newton, Kansas!<br> All proceeds from our used bookstore are donated to charitable organizations in Harvey County. <br> Our volunteer staff is ready to help you find that special book in our extensive inventory.</p>
 
 <div id="storefrontcont">
     <img src="/images/storefront.jpg" alt="Book ReViews Store from front" id="storefront">

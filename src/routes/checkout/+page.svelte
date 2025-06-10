@@ -113,7 +113,7 @@
         shippingInfo: shippingInfo  // Changed from 'shippingAddress' to 'shippingInfo'
       };
       
-      console.log('Sending payment request with:', requestBody);
+      console.log('Sending payment request...');
       
       const response = await fetch('/api/process-payment', {
         method: 'POST',

@@ -43,25 +43,17 @@
     if (paymentData) {
       try {
         orderDetails = JSON.parse(paymentData);
-        console.log('Order details loaded:', orderDetails);
         // Send confirmation email once we have order details
         sendConfirmationEmail();
         
-        // Fix for email notification issue
-        setTimeout(() => {
-          if (!emailError) {
-            emailSent = true;
-          }
-        }, 15500);
+        // Clear the cart ONLY if payment data was successfully parsed
+        localStorage.setItem('cart', '[]');
       } catch (e) {
         console.error('Failed to parse payment data', e);
       }
     } else {
       console.error('No payment data found in localStorage');
     }
-    
-    // Clear the cart
-    localStorage.setItem('cart', '[]');
   });
 </script>
 

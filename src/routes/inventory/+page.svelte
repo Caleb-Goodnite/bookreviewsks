@@ -56,8 +56,9 @@
         if (bookInCart) {
             // Check if adding one more would exceed stock
             if (bookInCart.quantity + 1 > currentStock) {
-                alert(`Sorry, only ${currentStock} of "${book.title}" in stock.`);
+                alert(`Sorry, only ${currentStock} of "${book.title}" in stock. Please select less than ${currentStock} of "${book.title}" to add to your cart.`);
                 return;
+                bookInCart.quantity = currentStock;
             }
             // If the book is already in the cart, increment the quantity
             bookInCart.quantity += 1;

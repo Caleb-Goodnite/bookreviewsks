@@ -33,10 +33,8 @@
     <p>Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the Site or in-store to:</p>
     <ul>
       <li>Process payments, complete transactions, and manage orders.</li>
-      <li>Send you a newsletter or other promotional materials related to our non-profit mission and store events, if you opt-in.</li>
       <li>Manage volunteer applications, schedules, and communications.</li>
       <li>Respond to your comments, inquiries, and customer service requests.</li>
-      <li>Improve the operation of the Site and our in-store experience.</li>
       <li>Monitor and analyze usage and trends to improve your experience with the Site.</li>
       <li>Prevent fraudulent transactions, monitor against theft, and protect against criminal activity.</li>
       <li>Comply with legal and regulatory requirements applicable to non-profit organizations.</li>
@@ -49,7 +47,7 @@
     <ul>
       <li><strong>Service Providers:</strong> We may share your information with third-party vendors, service providers, contractors, or agents who perform services for us or on our behalf and require access to such information to do that work (e.g., payment processing with Square, email delivery for newsletters, website hosting). These providers are obligated to protect your information.</li>
       <li><strong>Legal Requirements:</strong> We may disclose your information if required to do so by law or in the good faith belief that such action is necessary to (a) comply with a legal obligation or government request; (b) protect and defend the rights or property of Book ReViews; (c) act in urgent circumstances to protect the personal safety of users of the Site, volunteers, or the public; or (d) protect against legal liability.</li>
-      <li><strong>Donations:</strong> If you make a donation, your name may be acknowledged (e.g., in an annual report or donor list) unless you request anonymity. We will not share your contact information or donation amount without your explicit consent.</li>
+      <li><strong>Donations:</strong> If you make a donation, your name may be acknowledged (e.g., in an annual report or donor list) unless you request anonymity. We <strong style="color: #202020;">will not</strong> share your contact information or donation amount without your explicit consent.</li>
     </ul>
   </section>
 
@@ -91,9 +89,9 @@
     <h2>Contact Us</h2>
     <p>If you have questions or comments about this Privacy Policy, please contact us at:</p>
     <p>Book ReViews<br>
-    [707 N Main St, Newton, KS 67114]<br>
-    [(316) 283-3442]<br>
-    [bookreviewsnewton@gmail.com]</p>
+    707 N Main St, Newton, KS 67114<br>
+    (316) 283-3442<br>
+    newtonbkreviews@sbcglobal.net</p>
   </section>
 
 </div>
