@@ -1,11 +1,14 @@
 <script>
   import { onMount } from 'svelte';
+  // Import public environment variables
+  import { PUBLIC_SQUARE_APP_ID, PUBLIC_SQUARE_LOCATION_ID } from '$env/static/public';
   
   let payments;
   let card;
   
   onMount(async () => {
-    payments = await window.Square.payments('sandbox-sq0idb-0fTH4vYi_b7zuMYbYDuQaA', 'LZFEXWF6T8KPM');
+    // Use the imported environment variables
+    payments = await window.Square.payments(PUBLIC_SQUARE_APP_ID, PUBLIC_SQUARE_LOCATION_ID);
     card = await payments.card();
     await card.attach('#card-container');
   });
