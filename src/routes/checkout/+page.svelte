@@ -167,7 +167,6 @@
         sessionStorage.setItem('lastPayment', JSON.stringify({
           id: data.payment.id,
           amount: total,
-          shippingAddress: shippingInfo,
           cart: cart
         }));
         
