@@ -107,7 +107,7 @@ export async function POST({ request, fetch: svelteKitFetch }) {
         }
         
         // Use the price from the book record or fall back to the cart item price
-        const price = parseFloat(book.price || cartItem.price || 0);
+        const price = parseFloat(book.Price || cartItem.price || 0);
         console.log(`Calculating price: ${price} * ${cartItem.quantity} = ${price * cartItem.quantity}`);
         serverCalculatedTotal += price * cartItem.quantity;
         verifiedCartItems.push({

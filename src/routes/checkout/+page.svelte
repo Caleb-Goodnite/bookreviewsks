@@ -163,8 +163,8 @@
           console.error("Error sending emails:", emailError);
         }
         
-        // Save payment info for success page
-        localStorage.setItem('lastPayment', JSON.stringify({
+        // Save payment info for success page (using sessionStorage)
+        sessionStorage.setItem('lastPayment', JSON.stringify({
           id: data.payment.id,
           amount: total,
           shippingAddress: shippingInfo,
@@ -172,6 +172,7 @@
         }));
         
         successMessage = 'Payment processed successfully!';
+        // Still use localStorage for cart to persist across page refreshes
         localStorage.setItem('cart', '[]');
         setTimeout(() => {
           window.location.href = '/payment-success';

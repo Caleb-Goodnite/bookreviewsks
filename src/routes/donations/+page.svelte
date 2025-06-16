@@ -32,7 +32,7 @@
     if (!document.getElementById('square-script')) {
       const script = document.createElement('script');
       script.id = 'square-script';
-      script.src = 'https://sandbox.web.squarecdn.com/v1/square.js';
+      script.src = 'https://sandbox.web.squarecdn.com/v2/square.js';
       script.onload = initializeSquare;
       script.onerror = () => {
         cardErrors = 'Failed to load payment system. Please try again later.';
