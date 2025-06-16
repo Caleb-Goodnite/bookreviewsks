@@ -86,48 +86,63 @@ export async function POST({ request }) {
       note: `Donation $${numAmount.toFixed(2)}`
     };
     
-    // Make the payment request to Square
-    const squareResponse = await fetch('https://connect.squareupsandbox.com/v2/payments', {
-      method: 'POST',
-      headers: {
-        'Square-Version': '2023-09-25',
-        'Authorization': `Bearer ${env.SQUARE_ACCESS_TOKEN}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(paymentBody)
-    });
-    
-    let squareData;
     try {
-      squareData = await squareResponse.json();
-    } catch (e) {
-      console.error('Error parsing Square response:', e);
-      return createErrorResponse('Error processing payment', 500);
-    }
-    
-    console.log('Square API response:', JSON.stringify(squareData, null, 2));
-    
-    if (squareData.payment) {
-      return json(
-        { 
-          success: true, 
-          payment: { 
-            id: squareData.payment.id,
-            amount: numAmount.toFixed(2)
-          } 
+      // Make the payment request to Square
+      console.log('Sending request to Square API...');
+      const squareResponse = await fetch('https://connect.squareupsandbox.com/v2/payments', {
+        method: 'POST',
+        headers: {
+          'Square-Version': '2023-09-25',
+          'Authorization': `Bearer ${env.SQUARE_ACCESS_TOKEN}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        {
-          status: 200,
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
-          }
+        body: JSON.stringify(paymentBody)
+      });
+      
+      console.log(`Square API response status: ${squareResponse.status}`);
+      
+      let responseText;
+      try {
+        responseText = await squareResponse.text();
+        console.log('Square API raw response:', responseText);
+        
+        if (!responseText) {
+          throw new Error('Empty response from Square API');
         }
-      );
-    } else {
-      const errorMsg = squareData.errors?.[0]?.detail || 'Donation payment failed';
-      console.error('Square payment error:', errorMsg, squareData.errors);
-      return createErrorResponse(errorMsg, 400);
+        
+        const squareData = JSON.parse(responseText);
+        
+        if (squareData.payment) {
+          console.log('Payment successful:', squareData.payment.id);
+          return json(
+            { 
+              success: true, 
+              payment: { 
+                id: squareData.payment.id,
+                amount: numAmount.toFixed(2)
+              } 
+            },
+            {
+              status: 200,
+              headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
+              }
+            }
+          );
+        } else {
+          const errorMsg = squareData.errors?.[0]?.detail || 'Donation payment failed';
+          console.error('Square payment error:', errorMsg, squareData.errors);
+          throw new Error(errorMsg);
+        }
+      } catch (parseError) {
+        console.error('Error parsing Square response:', parseError);
+        throw new Error(`Invalid response from payment processor: ${parseError.message}`);
+      }
+    } catch (error) {
+      console.error('Square API request failed:', error);
+      throw error; // This will be caught by the outer try-catch
     }
   } catch (error) {
     console.error('Donation processing error:', error);

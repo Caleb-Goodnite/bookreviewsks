@@ -96,59 +96,65 @@
       if (tokenResult.status === 'OK' && tokenResult.token) {
         console.log('Card tokenization successful, processing payment...');
         
-        // Prepare the payment request
-        const paymentData = {
-          token: tokenResult.token,
-          amount: numAmount,
-          verificationToken: 'dummy-token-recaptcha-disabled',
-          // Add any additional metadata here
-          metadata: {
-            source: 'website-donation',
-            timestamp: new Date().toISOString()
-          }
-        };
-        
-        console.log('Sending payment request:', JSON.stringify(paymentData, null, 2));
-        
-        // Process the payment with our server
-        const response = await fetch('/api/process-donation', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(paymentData)
-        });
-        
-        console.log('Payment API response status:', response.status);
-        
-        // Handle the response
-        let responseData;
-        const responseText = await response.text();
-        
         try {
-          responseData = responseText ? JSON.parse(responseText) : {};
-          console.log('Payment API response data:', responseData);
-        } catch (parseError) {
-          console.error('Error parsing payment response:', parseError);
-          throw new Error('Invalid response from payment processor. Please try again.');
-        }
-        
-        if (!response.ok) {
-          console.error('Payment processing failed:', response.status, responseData);
-          throw new Error(
-            responseData.error || 
-            responseData.message || 
-            `Payment failed with status: ${response.status}`
-          );
-        }
-        
-        if (responseData.success) {
-          console.log('Payment successful, redirecting to thank you page...');
-          // Redirect to thank you page with the amount
-          goto(`/donations/thank-you?amount=${encodeURIComponent(numAmount)}`);
-        } else {
-          throw new Error(responseData.error || 'Payment processing failed');
+          // Prepare the payment request
+          const paymentData = {
+            token: tokenResult.token,
+            amount: numAmount,
+            verificationToken: 'dummy-token-recaptcha-disabled',
+            metadata: {
+              source: 'website-donation',
+              timestamp: new Date().toISOString()
+            }
+          };
+          
+          console.log('Sending payment request:', JSON.stringify(paymentData, null, 2));
+          
+          // Process the payment with our server
+          const response = await fetch('/api/process-donation', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest' // Helps identify AJAX requests
+            },
+            body: JSON.stringify(paymentData)
+          });
+          
+          console.log('Payment API response status:', response.status);
+          
+          // Handle the response
+          const responseText = await response.text().catch(() => '');
+          console.log('Raw response text:', responseText);
+          
+          let responseData;
+          try {
+            responseData = responseText ? JSON.parse(responseText) : {};
+            console.log('Parsed response data:', responseData);
+          } catch (parseError) {
+            console.error('Error parsing payment response:', parseError);
+            throw new Error('We received an unexpected response from the payment processor. Please try again.');
+          }
+          
+          if (!response.ok) {
+            console.error('Payment processing failed:', response.status, responseData);
+            throw new Error(
+              responseData.error || 
+              responseData.message || 
+              `Payment failed with status: ${response.status}`
+            );
+          }
+          
+          if (responseData.success && responseData.payment) {
+            console.log('Payment successful, redirecting to thank you page...');
+            goto(`/donations/thank-you?amount=${encodeURIComponent(numAmount)}`);
+            return; // Important to prevent further execution
+          } else {
+            throw new Error(responseData.error || 'Payment processing was not successful');
+          }
+        } catch (error) {
+          console.error('Payment processing error:', error);
+          throw error; // Re-throw to be caught by the outer catch
         }
       } else {
         // Handle tokenization errors
