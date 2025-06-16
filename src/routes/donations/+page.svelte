@@ -28,17 +28,18 @@
   }
   
   onMount(async () => {
-    // Load Square SDK if not already loaded
+    // Simple script loading like in the checkout page
     if (!document.getElementById('square-script')) {
       const script = document.createElement('script');
       script.id = 'square-script';
-      script.src = 'https://sandbox.web.squarecdn.com/v2/square.js';
+      script.src = 'https://sandbox.web.squarecdn.com/v1/square.js';
       script.onload = initializeSquare;
       script.onerror = () => {
         cardErrors = 'Failed to load payment system. Please try again later.';
       };
       document.body.appendChild(script);
-    } else {
+    } else if (window.Square) {
+      // If script is already loaded, initialize directly
       initializeSquare();
     }
   });
@@ -46,9 +47,16 @@
   async function initializeSquare() {
     try {
       console.log('Initializing Square...');
+      
+      // Initialize Square payments
       payments = window.Square.payments(PUBLIC_SQUARE_APP_ID, PUBLIC_SQUARE_LOCATION_ID);
+      
+      // Create and mount the card element
       card = await payments.card();
+      
+      // Mount the card element
       await card.attach('#card-container');
+      
       console.log('Square payment form loaded successfully');
     } catch (error) {
       console.error('Error initializing Square:', error);
@@ -70,54 +78,95 @@
       return;
     }
     
+    // Reset any previous errors and set loading state
     cardErrors = '';
     loading = true;
     
     try {
-      // Execute reCAPTCHA - DISABLED
-      // const recaptchaToken = await recaptchaComponent.executeReCaptcha();
-      // if (!recaptchaToken) {
-      //   throw new Error('reCAPTCHA verification failed. Please try again.');
-      // }
-      const recaptchaToken = 'dummy-token-recaptcha-disabled'; // Provide a dummy token or handle appropriately
-
-      // Get a payment token from the card element
-      const result = await card.tokenize();
-      if (result.status === 'OK') {
+      // First, verify the card is properly initialized
+      if (!card) {
+        throw new Error('Payment system not ready. Please refresh the page and try again.');
+      }
+      
+      console.log('Starting payment process...');
+      
+      // Tokenize the card data
+      const tokenResult = await card.tokenize();
+      
+      if (tokenResult.status === 'OK' && tokenResult.token) {
+        console.log('Card tokenization successful, processing payment...');
+        
+        // Prepare the payment request
+        const paymentData = {
+          token: tokenResult.token,
+          amount: numAmount,
+          verificationToken: 'dummy-token-recaptcha-disabled',
+          // Add any additional metadata here
+          metadata: {
+            source: 'website-donation',
+            timestamp: new Date().toISOString()
+          }
+        };
+        
+        console.log('Sending payment request:', JSON.stringify(paymentData, null, 2));
+        
         // Process the payment with our server
         const response = await fetch('/api/process-donation', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
           },
-          body: JSON.stringify({
-            token: result.token,
-            amount: numAmount,
-            // recaptchaToken: recaptchaToken // Add reCAPTCHA token here - DISABLED
-          })
+          body: JSON.stringify(paymentData)
         });
         
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || `Server error: ${response.status}`);
+        console.log('Payment API response status:', response.status);
+        
+        // Handle the response
+        let responseData;
+        const responseText = await response.text();
+        
+        try {
+          responseData = responseText ? JSON.parse(responseText) : {};
+          console.log('Payment API response data:', responseData);
+        } catch (parseError) {
+          console.error('Error parsing payment response:', parseError);
+          throw new Error('Invalid response from payment processor. Please try again.');
         }
         
-        const data = await response.json();
+        if (!response.ok) {
+          console.error('Payment processing failed:', response.status, responseData);
+          throw new Error(
+            responseData.error || 
+            responseData.message || 
+            `Payment failed with status: ${response.status}`
+          );
+        }
         
-        if (data.success) {
-          // Redirect to thank you page
-          goto(`/donations/thank-you?amount=${numAmount}`);
+        if (responseData.success) {
+          console.log('Payment successful, redirecting to thank you page...');
+          // Redirect to thank you page with the amount
+          goto(`/donations/thank-you?amount=${encodeURIComponent(numAmount)}`);
         } else {
-          throw new Error(data.error || 'Payment failed');
+          throw new Error(responseData.error || 'Payment processing failed');
         }
       } else {
-        cardErrors = result.errors[0].message;
-        throw new Error(result.errors[0].message);
+        // Handle tokenization errors
+        const errorMsg = tokenResult.errors?.[0]?.message || 'Card tokenization failed';
+        console.error('Card tokenization error:', tokenResult.errors || 'Unknown error');
+        throw new Error(errorMsg);
       }
-    } catch (e) {
-      console.error(e);
-      cardErrors = e.message || 'Payment processing failed. Please try again.';
+    } catch (error) {
+      console.error('Payment processing error:', error);
+      // Set user-friendly error message
+      cardErrors = error.message || 'An error occurred while processing your payment. Please try again.';
+      
+      // If it's a network error, provide more specific guidance
+      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        cardErrors = 'Network error. Please check your internet connection and try again.';
+      }
     } finally {
+      // Always reset loading state
       loading = false;
     }
   }
@@ -444,26 +493,48 @@
         />
       </div>
     
-    <!-- Add the card container back -->
-    <!-- Add error display -->
-    <div id="card-container" style="min-height: 90px; margin: 20px 0; padding: 10px; background-color: rgba(255, 255, 255, 0.1); border-radius: 4px;"></div>
-    
-    {#if cardErrors}
-      <div class="card-errors" style="color: #ff6b6b; margin-bottom: 15px; font-size: 0.9rem;">
-        {cardErrors}
+    <!-- Square Payment Form -->
+    <form id="payment-form" class="square-payment-form">
+      <div id="card-container" style="margin-bottom: 20px; min-height: 100px;">
+        <!-- Square Card Element will be inserted here -->
       </div>
-    {/if}
-
-    <button 
-      class="donate-button" 
-      on:click={handleDonation} 
-      disabled={loading}
-    >
-      {loading ? 'Processing...' : 'Donate Now'}
-    </button>
+      
+      <!-- Add a hidden input for the payment token -->
+      <input type="hidden" id="card-nonce" name="nonce" />
+      
+      <div class="form-actions">
+        <button 
+          type="button"
+          class="donate-button" 
+          on:click|preventDefault={handleDonation}
+          disabled={!selectedAmount && !customAmount || loading}
+          id="card-button"
+          data-processing={loading}
+        >
+          {#if loading}
+            Processing...
+          {:else}
+            Donate ${selectedAmount || customAmount}
+          {/if}
+        </button>
+      </div>
+      
+      {#if cardErrors}
+        <div class="error-message" style="color: #ff6b6b; margin-top: 15px; text-align: center;">
+          {cardErrors}
+        </div>
+      {/if}
+      
+      <div id="payment-status-container" style="display: none;">
+        <div id="success" class="payment-status">
+          <div class="icon-success">✓</div>
+          <p>Payment successful!</p>
+        </div>
+        <div id="error" class="payment-status">
+          <div class="icon-error">✕</div>
+          <p>Payment failed. Please try again.</p>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
-
-
-<!-- <ReCaptcha bind:this={recaptchaComponent} /> -->
-<!-- Remove the redundant button below -->
