@@ -94,6 +94,38 @@ h2, p {
   max-width: 300px;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  .main-nav {
+    padding: 1rem 2em;
+    min-height: 80px;
+  }
+  
+  .nav-logo {
+    margin: 0 auto;
+  }
+  
+  .nav-logo img {
+    max-height: 50px;
+    width: auto;
+    display: block;
+  }
+  
+  .hamburger-menu {
+    top: 1.5rem;
+  }
+  
+  .desktop-nav-links {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+  }
+  
+  .nav-button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
 @media (max-width: 800px) {
   .btncont {
     display: none;
@@ -109,12 +141,19 @@ h2, p {
   
   nav {
     position: relative;
-    padding: 1.5em 1em;
-    min-height: 3.5rem;
+    padding: 1rem 1em;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
   }
   
   .nav-logo {
     margin: 0 auto; /* Center the logo on mobile */
+  }
+  
+  .nav-logo img {
+    max-height: 45px;
+    width: auto;
   }
 }
 
@@ -845,6 +884,29 @@ nav {
 
 #navhr {
     display: none;
+}
+
+/* Hide logo container on screens narrower than 1000px */
+@media (max-width: 1000px) {
+    #brlogoimgcont {
+        display: none;
+    }
+    
+    /* Taller navbar for iPad Air in landscape */
+    @media (min-height: 1000px) and (max-width: 1200px) {
+        .main-nav {
+            min-height: 100px;
+            padding: 1.5rem 2em;
+        }
+        
+        .nav-logo img {
+            max-height: 60px;
+        }
+        
+        .hamburger-menu {
+            top: 2rem;
+        }
+    }
 }
 
 /* Media queries for responsive design */
