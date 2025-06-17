@@ -38,8 +38,8 @@
   };
   
   onMount(() => {
-    // Try to get order details from sessionStorage
-    const paymentData = sessionStorage.getItem('lastPayment');
+    // Try to get order details from localStorage
+    const paymentData = localStorage.getItem('lastPayment');
     if (paymentData) {
       try {
         orderDetails = JSON.parse(paymentData);
@@ -48,16 +48,11 @@
         
         // Clear the cart ONLY if payment data was successfully parsed
         localStorage.setItem('cart', '[]');
-        
-        // Clear the session storage after loading the data
-        sessionStorage.removeItem('lastPayment');
       } catch (e) {
         console.error('Failed to parse payment data', e);
       }
     } else {
-      console.error('No payment data found in sessionStorage');
-      // Redirect to home if no payment data is found
-      goto('/');
+      console.error('No payment data found in localStorage');
     }
   });
 </script>
