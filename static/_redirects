@@ -1,8 +1,11 @@
-# API routes - pass through directly
-/api/*  /api/:splat  200
+# Handle all requests - SvelteKit will handle routing
+/*  /.netlify/functions/entry  200
 
-# Handle SPA routing - serve index.html for all other routes
-/*  /index.html  200
+# Handle API routes
+/api/*  /.netlify/functions/entry  200
+
+# Handle static files
+/_app/immutable/*  /_app/immutable/:splat  200
 
 # Prevent content type sniffing for security
 *  Content-Type: application/octet-stream  X-Content-Type-Options: nosniff
