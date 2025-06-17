@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@square/web-sdk": "^2.1.0",
+    "@sveltejs/adapter-netlify": "^5.0.2",
     "axios": "^1.8.4",
     "dotenv": "^16.4.7",
     "nodemailer": "^6.10.0",
