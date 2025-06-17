@@ -56,7 +56,7 @@
       <a href="/cart"><button class="nav-button">Cart</button></a>
       <a href="/checkout"><button class="nav-button">Checkout</button></a>
       <a href="/volunteer-sign-up"><button class="nav-button">Volunteer</button></a>
-      <!-- <a href="/donations"><button class="nav-button">Donate</button></a> -->
+      <a href="/donations"><button class="nav-button">Donate</button></a>
       <a href="/policies"><button class="nav-button">Policies</button></a>
     </div>
     
@@ -68,7 +68,7 @@
         <a href="/cart" on:click={closeMenu}><button class="nav-button mobile-nav-button">Cart</button></a>
         <a href="/checkout" on:click={closeMenu}><button class="nav-button mobile-nav-button">Checkout</button></a>
         <a href="/volunteer-sign-up" on:click={closeMenu}><button class="nav-button mobile-nav-button">Volunteer</button></a>
-        <!-- <a href="/donations" on:click={closeMenu}><button class="nav-button mobile-nav-button">Donate</button></a> -->
+        <a href="/donations" on:click={closeMenu}><button class="nav-button mobile-nav-button">Donate</button></a>
         <a href="/policies" on:click={closeMenu}><button class="nav-button mobile-nav-button">Policies</button></a>
       </div>
     </div>
