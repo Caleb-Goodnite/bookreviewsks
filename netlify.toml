@@ -7,13 +7,6 @@
   NODE_VERSION = "18"
   NPM_FLAGS = "--legacy-peer-deps"
 
-# Let SvelteKit handle all routing through the Netlify adapter
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/entry"
-  status = 200
-  force = false
-
 # Security headers for all responses
 [[headers]]
   for = "/*"

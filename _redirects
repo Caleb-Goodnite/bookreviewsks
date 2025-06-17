@@ -1,11 +1,22 @@
-# Handle all requests - SvelteKit will handle routing
+# SvelteKit catch-all - must be the last rule
 /*  /.netlify/functions/entry  200
 
-# Handle API routes
+# API routes - ensure they're handled by the server
 /api/*  /.netlify/functions/entry  200
 
-# Handle static files
+# Handle static assets
 /_app/immutable/*  /_app/immutable/:splat  200
 
-# Prevent content type sniffing for security
-*  Content-Type: application/octet-stream  X-Content-Type-Options: nosniff
+# Security headers
+/*  
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:;
+
+# CORS for API
+/api/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization
