@@ -360,27 +360,43 @@
         
         <!-- Community Impact Section -->
         <div class="impact-section fade-in-on-scroll">
-            <h2>Our Community Impact</h2>
+            <h2 class="impact-title">Our Community Impact</h2>
             <div class="impact-grid">
-                <div class="impact-card magnetic-button">
-                    <div class="impact-icon">📚</div>
-                    <h3>10,000+</h3>
-                    <p>Books sold annually</p>
+                <div class="impact-card magnetic-button" role="article">
+                    <div class="impact-icon-wrapper">
+                        <span class="impact-icon" role="img" aria-label="Books">📚</span>
+                    </div>
+                    <div class="impact-content">
+                        <h3 class="impact-number">10,000+</h3>
+                        <p class="impact-description">Books sold annually</p>
+                    </div>
                 </div>
-                <div class="impact-card magnetic-button">
-                    <div class="impact-icon">💝</div>
-                    <h3>$50,000+</h3>
-                    <p>Donated to Harvey County charities</p>
+                <div class="impact-card magnetic-button" role="article">
+                    <div class="impact-icon-wrapper">
+                        <span class="impact-icon" role="img" aria-label="Heart">💝</span>
+                    </div>
+                    <div class="impact-content">
+                        <h3 class="impact-number">$50,000+</h3>
+                        <p class="impact-description">Donated to Harvey County charities</p>
+                    </div>
                 </div>
-                <div class="impact-card magnetic-button">
-                    <div class="impact-icon">🤝</div>
-                    <h3>25+</h3>
-                    <p>Active volunteers</p>
+                <div class="impact-card magnetic-button" role="article">
+                    <div class="impact-icon-wrapper">
+                        <span class="impact-icon" role="img" aria-label="Handshake">🤝</span>
+                    </div>
+                    <div class="impact-content">
+                        <h3 class="impact-number">25+</h3>
+                        <p class="impact-description">Active volunteers</p>
+                    </div>
                 </div>
-                <div class="impact-card magnetic-button">
-                    <div class="impact-icon">🏆</div>
-                    <h3>15+</h3>
-                    <p>Years serving Newton</p>
+                <div class="impact-card magnetic-button" role="article">
+                    <div class="impact-icon-wrapper">
+                        <span class="impact-icon" role="img" aria-label="Trophy">🏆</span>
+                    </div>
+                    <div class="impact-content">
+                        <h3 class="impact-number">15+</h3>
+                        <p class="impact-description">Years serving Newton</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -578,54 +594,128 @@
         transform: translateY(0);
     }
     
-    /* Impact Section */
+    /* Impact Section Styles */
     .impact-section {
-        margin: var(--spacing-xxl) 0;
-        text-align: center;
-        display: block;
-        visibility: visible;
+        padding: var(--spacing-xxl) var(--spacing-lg);
+        margin: var(--spacing-xxl) auto;
+        max-width: 1400px;
     }
-    
+
+    .impact-title {
+        font-size: var(--font-size-4xl);
+        color: var(--text-light);
+        text-align: center;
+        margin-bottom: var(--spacing-xl);
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
     .impact-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: var(--spacing-lg);
-        margin-top: var(--spacing-xl);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--spacing-xl);
+        padding: var(--spacing-lg);
     }
-    
+
     .impact-card {
-        background: var(--background-card);
-        backdrop-filter: blur(10px);
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius-lg);
-        padding: var(--spacing-xl);
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: var(--radius-xl);
+        padding: var(--spacing-xl) var(--spacing-lg);
         text-align: center;
-        transition: var(--transition-normal);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
     }
-    
+
+    .impact-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
     .impact-card:hover {
-        transform: translateY(-10px);
-        box-shadow: var(--shadow-xl);
-        border-color: var(--primary-color);
+        transform: translateY(-8px);
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     }
-    
-    .impact-icon {
-        font-size: 3rem;
+
+    .impact-card:hover::before {
+        opacity: 1;
+    }
+
+    .impact-icon-wrapper {
         margin-bottom: var(--spacing-md);
-        animation: pulse 2s infinite;
+        position: relative;
+        z-index: 1;
     }
-    
-    .impact-card h3 {
-        font-size: var(--font-size-2xl);
+
+    .impact-icon {
+        font-size: 3.5rem;
+        display: inline-block;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .impact-card:hover .impact-icon {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    .impact-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .impact-number {
+        font-size: var(--font-size-3xl);
+        font-weight: 700;
+        color: var(--text-light);
         margin-bottom: var(--spacing-sm);
-        color: var(--primary-light);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        font-family: var(--font-family-primary);
     }
-    
-    .impact-card p {
-        font-size: var(--font-size-base);
-        color: var(--secondary-color);
+
+    .impact-description {
+        font-size: var(--font-size-lg);
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.6;
         margin: 0;
+        font-weight: 500;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .impact-grid {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--spacing-lg);
+            padding: var(--spacing-md);
+        }
+
+        .impact-card {
+            padding: var(--spacing-lg);
+        }
+
+        .impact-icon {
+            font-size: 3rem;
+        }
+
+        .impact-number {
+            font-size: var(--font-size-2xl);
+        }
+
+        .impact-description {
+            font-size: var(--font-size-base);
+        }
     }
     
     /* Scroll Animation Classes - Progressive Enhancement */

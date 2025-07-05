@@ -1,8 +1,16 @@
 import { json } from '@sveltejs/kit';
-import { SQUARE_ACCESS_TOKEN } from '$env/static/private';
-import { PUBLIC_SQUARE_LOCATION_ID } from '$env/static/public';
+import { env as privateEnv } from '$env/dynamic/private';
+import { env as publicEnv } from '$env/dynamic/public';
 
 export async function POST({ request }) {
+  const SQUARE_ACCESS_TOKEN = privateEnv.SQUARE_ACCESS_TOKEN;
+  const PUBLIC_SQUARE_LOCATION_ID = publicEnv.PUBLIC_SQUARE_LOCATION_ID;
+
+  if (!SQUARE_ACCESS_TOKEN || !PUBLIC_SQUARE_LOCATION_ID) {
+    console.error('Missing Square environment variables. Make sure SQUARE_ACCESS_TOKEN and PUBLIC_SQUARE_LOCATION_ID are set in your .env file.');
+    return json({ error: 'Server configuration error.' }, { status: 500 });
+  }
+
   try {
     const { items, redirectUrl } = await request.json();
     

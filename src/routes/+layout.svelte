@@ -146,7 +146,9 @@
     padding: 4px;
     box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
     gap: 2px;
-    margin-left: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .nav-pill {
