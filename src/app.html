@@ -1,39 +1,255 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<!-- Performance optimizations -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<!-- Preconnect to external domains for performance -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
-		<meta charset="utf-8" />
+		<link rel="preconnect" href="https://sandbox.web.squarecdn.com" crossorigin>
+		
+		<!-- DNS prefetch for external resources -->
+		<link rel="dns-prefetch" href="//fonts.googleapis.com">
+		<link rel="dns-prefetch" href="//sandbox.web.squarecdn.com">
+		
+		<!-- Enhanced font loading with display swap for better performance -->
+		<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		
+		<!-- Square SDK -->
 		<script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Book ReViews - Used and Vintage Books</title>
-		<!-- Updated favicon links -->
+		
+		<!-- Enhanced title and meta description -->
+		<title>Book ReViews - Used Bookstore in Newton, Kansas | Non-Profit Supporting Harvey County</title>
+		<meta name="description" content="Book ReViews is Newton, Kansas' premier non-profit used bookstore. Browse our extensive inventory of used & vintage books. All proceeds support Harvey County charities. Open Mon-Sat." />
+		<meta name="keywords" content="used books Newton KS, bookstore Newton Kansas, Harvey County books, non-profit bookstore, vintage books Kansas, book donations Newton, volunteer Newton KS, charity bookstore" />
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		<meta name="author" content="Book ReViews" />
+		<meta name="theme-color" content="#947A52" />
+		
+		<!-- Enhanced favicon setup -->
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" sizes="any">
 		<link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="%sveltekit.assets%/favicon-16x16.png">
 		<link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png">
-		<meta name="description" content="Book ReViews - A community bookstore offering quality used books at affordable prices. Browse our inventory, make a monetary donation, or volunteer with us. Book donations accepted in-store." />
-		<meta name="keywords" content="used books, book store, monetary donations, volunteer, community bookstore, affordable books, book reviews, books kansas, newton book reviews" />
-		<meta name="robots" content="index, follow" />
-		<!-- Open Graph / Social Media Meta Tags -->
-		<meta property="og:title" content="Book ReViews - Used and Vintage Books" />
-		<meta property="og:description" content="A community bookstore offering quality used books at affordable prices. Support us with monetary donations online. Book donations accepted in-store." />
+		<link rel="manifest" href="%sveltekit.assets%/site.webmanifest">
+		
+		<!-- Enhanced Open Graph / Social Media Meta Tags -->
+		<meta property="og:title" content="Book ReViews - Used Bookstore in Newton, Kansas" />
+		<meta property="og:description" content="Newton, Kansas' premier non-profit used bookstore. Browse our extensive inventory of used & vintage books. All proceeds support Harvey County charities." />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://bookreviewsstore.netlify.app/" />
-		<meta property="og:image" content="%sveltekit.assets%/logo-high-res.png" />
+		<meta property="og:url" content="https://bookreviewsks.netlify.app/" />
+		<meta property="og:image" content="https://bookreviewsks.netlify.app/images/storefront.jpg" />
+		<meta property="og:image:alt" content="Book ReViews bookstore storefront in Newton, Kansas" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:site_name" content="Book ReViews" />
+		<meta property="og:locale" content="en_US" />
+		
+		<!-- Twitter Card Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Book ReViews - Used Bookstore in Newton, Kansas" />
+		<meta name="twitter:description" content="Newton, Kansas' premier non-profit used bookstore. Browse our extensive inventory of used & vintage books. All proceeds support Harvey County charities." />
+		<meta name="twitter:image" content="https://bookreviewsks.netlify.app/images/storefront.jpg" />
+		<meta name="twitter:image:alt" content="Book ReViews bookstore storefront in Newton, Kansas" />
+		
+		<!-- Local Business Schema.org structured data -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "LocalBusiness",
+			"@id": "https://bookreviewsks.netlify.app/#organization",
+			"name": "Book ReViews",
+			"alternateName": "Book ReViews Newton KS",
+			"description": "Non-profit used bookstore in Newton, Kansas. All proceeds donated to Harvey County charitable organizations.",
+			"url": "https://bookreviewsks.netlify.app/",
+			"telephone": "316-283-3442",
+			"email": "info@bookreviewsks.com",
+			"image": [
+				"https://bookreviewsks.netlify.app/images/storefront.jpg",
+				"https://bookreviewsks.netlify.app/images/brlogo.jpg"
+			],
+			"logo": "https://bookreviewsks.netlify.app/logo-high-res.png",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "707 N Main ST",
+				"addressLocality": "Newton",
+				"addressRegion": "KS",
+				"postalCode": "67114",
+				"addressCountry": "US"
+			},
+			"geo": {
+				"@type": "GeoCoordinates",
+				"latitude": 38.0464,
+				"longitude": -97.3452
+			},
+			"openingHoursSpecification": [
+				{
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+					"opens": "09:30",
+					"closes": "17:30"
+				},
+				{
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": "Saturday",
+					"opens": "09:30",
+					"closes": "17:00"
+				}
+			],
+			"priceRange": "$",
+			"acceptsReservations": false,
+			"hasMap": "https://maps.google.com/maps?q=707+N+Main+ST,+Newton,+KS+67114",
+			"areaServed": {
+				"@type": "Place",
+				"name": "Harvey County, Kansas"
+			},
+			"serviceType": "Used Bookstore",
+			"knowsAbout": ["Used Books", "Vintage Books", "Book Donations", "Charity Support"],
+			"sameAs": [
+				"https://www.facebook.com/BookReViewsNewton",
+				"https://bookreviewsks.netlify.app/"
+			]
+		}
+		</script>
+		
+		<!-- Website Schema.org structured data -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"@id": "https://bookreviewsks.netlify.app/#website",
+			"url": "https://bookreviewsks.netlify.app/",
+			"name": "Book ReViews",
+			"description": "Non-profit used bookstore in Newton, Kansas supporting Harvey County charities",
+			"publisher": {
+				"@type": "Organization",
+				"name": "Book ReViews"
+			},
+			"potentialAction": {
+				"@type": "SearchAction",
+				"target": "https://bookreviewsks.netlify.app/inventory?search={search_term_string}",
+				"query-input": "required name=search_term_string"
+			}
+		}
+		</script>
+		
+		<!-- Organization Schema.org structured data -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"@id": "https://bookreviewsks.netlify.app/#organization",
+			"name": "Book ReViews",
+			"url": "https://bookreviewsks.netlify.app/",
+			"logo": "https://bookreviewsks.netlify.app/logo-high-res.png",
+			"contactPoint": {
+				"@type": "ContactPoint",
+				"telephone": "316-283-3442",
+				"contactType": "customer service",
+				"areaServed": "Harvey County, Kansas",
+				"availableLanguage": "English"
+			},
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "707 N Main ST",
+				"addressLocality": "Newton",
+				"addressRegion": "KS",
+				"postalCode": "67114",
+				"addressCountry": "US"
+			},
+			"foundingDate": "2010",
+			"description": "Non-profit used bookstore supporting Harvey County charitable organizations",
+			"knowsAbout": ["Used Books", "Vintage Books", "Book Donations", "Community Support"],
+			"memberOf": {
+				"@type": "Organization",
+				"name": "Harvey County Community Organizations"
+			}
+		}
+		</script>
+		
 		%sveltekit.head%
 	</head>
 
 	<style>
-		h1{
-			font-family: 'Dancing Script', cursive;
+		/* Enhanced typography and base styles */
+		:root {
+			--primary-color: #947A52;
+			--secondary-color: #B8A082;
+			--accent-color: #6B5B47;
+			--text-light: #F5F5F5;
+			--text-dark: #2C2C2C;
+			--shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			--border-radius: 8px;
+			--transition: all 0.3s ease;
 		}
-		h2{
-			font-family: sans-serif;
+		
+		* {
+			box-sizing: border-box;
+		}
+		
+		body {
+			font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+			line-height: 1.6;
+			margin: 0;
+			padding: 0;
+			background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+			min-height: 100vh;
+			color: var(--text-light);
+		}
+		
+		h1 {
+			font-family: 'Dancing Script', cursive;
+			font-weight: 600;
+			letter-spacing: 1px;
+		}
+		
+		h2, h3, h4, h5, h6 {
+			font-family: 'Inter', sans-serif;
+			font-weight: 500;
+			margin: 0 0 1rem 0;
+		}
+		
+		/* Performance optimizations */
+		img {
+			max-width: 100%;
+			height: auto;
+			loading: lazy;
+		}
+		
+		/* Smooth scrolling */
+		html {
+			scroll-behavior: smooth;
+		}
+		
+		/* Focus management for accessibility */
+		:focus {
+			outline: 2px solid #0066cc;
+			outline-offset: 2px;
+		}
+		
+		/* Skip link for accessibility */
+		.skip-link {
+			position: absolute;
+			top: -40px;
+			left: 6px;
+			background: #000;
+			color: #fff;
+			padding: 8px;
+			text-decoration: none;
+			transition: top 0.3s;
+		}
+		
+		.skip-link:focus {
+			top: 6px;
 		}
 	</style>
+	
 	<body data-sveltekit-preload-data="hover">
+		<!-- Skip link for accessibility -->
+		<a href="#main-content" class="skip-link">Skip to main content</a>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
