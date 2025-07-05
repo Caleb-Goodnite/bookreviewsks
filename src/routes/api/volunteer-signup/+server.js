@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
-import { EMAIL_USER, EMAIL_PASSWORD, EMAIL_OWNER } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 export async function POST({ request }) {
   try {
@@ -40,8 +40,8 @@ export async function POST({ request }) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: EMAIL_USER,
-        pass: EMAIL_PASSWORD
+        user: env.EMAIL_USER,
+        pass: env.EMAIL_PASSWORD
       }
     });
     
@@ -68,8 +68,8 @@ export async function POST({ request }) {
     
     // Send the email
     await transporter.sendMail({
-      from: EMAIL_USER,
-      to: EMAIL_OWNER,
+      from: env.EMAIL_USER,
+      to: env.EMAIL_OWNER,
       subject: 'New Book ReViews Volunteer Application',
       html: emailContent
     });

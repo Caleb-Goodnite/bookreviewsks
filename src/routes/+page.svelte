@@ -725,12 +725,12 @@
         transition: all 0.8s ease;
     }
     
-    .js-enabled .fade-in-on-scroll {
+    :global(.js-enabled .fade-in-on-scroll) {
         opacity: 0;
         transform: translateY(30px);
     }
     
-    .js-enabled .fade-in-on-scroll.animate-in {
+    :global(.js-enabled .fade-in-on-scroll.animate-in) {
         opacity: 1;
         transform: translateY(0);
     }
@@ -741,12 +741,12 @@
         transition: all 0.8s ease;
     }
     
-    .js-enabled .slide-in-left {
+    :global(.js-enabled .slide-in-left) {
         opacity: 0;
         transform: translateX(-50px);
     }
     
-    .js-enabled .slide-in-left.animate-in {
+    :global(.js-enabled .slide-in-left.animate-in) {
         opacity: 1;
         transform: translateX(0);
     }
@@ -757,12 +757,12 @@
         transition: all 0.8s ease;
     }
     
-    .js-enabled .slide-in-right {
+    :global(.js-enabled .slide-in-right) {
         opacity: 0;
         transform: translateX(50px);
     }
     
-    .js-enabled .slide-in-right.animate-in {
+    :global(.js-enabled .slide-in-right.animate-in) {
         opacity: 1;
         transform: translateX(0);
     }
@@ -773,12 +773,12 @@
         transition: all 0.8s ease;
     }
     
-    .js-enabled .scale-in-on-scroll {
+    :global(.js-enabled .scale-in-on-scroll) {
         opacity: 0;
         transform: scale(0.8);
     }
     
-    .js-enabled .scale-in-on-scroll.animate-in {
+    :global(.js-enabled .scale-in-on-scroll.animate-in) {
         opacity: 1;
         transform: scale(1);
     }
@@ -815,10 +815,10 @@
     }
     
     /* Fallback: Ensure content is visible if JavaScript fails or animations are disabled */
-    .no-js .fade-in-on-scroll,
-    .no-js .slide-in-left,
-    .no-js .slide-in-right,
-    .no-js .scale-in-on-scroll {
+    :global(.no-js .fade-in-on-scroll),
+    :global(.no-js .slide-in-left),
+    :global(.no-js .slide-in-right),
+    :global(.no-js .scale-in-on-scroll) {
         opacity: 1 !important;
         transform: none !important;
     }
