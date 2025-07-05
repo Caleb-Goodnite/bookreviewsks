@@ -304,19 +304,6 @@
     /* Add other global main content styling if needed */
   }
 
-  .site-footer-placeholder {
-    background-color: #3a3633; /* From styles.css footer */
-    color: white;
-    padding: 20px;
-    text-align: center;
-    margin-top: 40px; /* Spacing above footer */
-    border-top: 3px solid #8b7d6b; /* From styles.css footer */
-  }
 
-  .site-footer-placeholder p {
-    margin: 0.5em 0;
-    color: #c9b99c; /* From styles.css footer-bottom */
-    font-family: sans-serif; /* Match body or define */
-  }
 
 </style>
