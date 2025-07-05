@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
-  import { PUBLIC_SQUARE_APP_ID, PUBLIC_SQUARE_LOCATION_ID } from '$env/static/public';
+  import { env } from '$env/dynamic/public';
   
   // import ReCaptcha from '../../components/ReCaptcha.svelte';
   // let recaptchaComponent;
@@ -46,7 +46,7 @@
   async function initializeSquare() {
     try {
       console.log('Initializing Square...');
-      payments = window.Square.payments(PUBLIC_SQUARE_APP_ID, PUBLIC_SQUARE_LOCATION_ID);
+      payments = window.Square.payments(env.PUBLIC_SQUARE_APP_ID, env.PUBLIC_SQUARE_LOCATION_ID);
       card = await payments.card();
       await card.attach('#card-container');
       console.log('Square payment form loaded successfully');
