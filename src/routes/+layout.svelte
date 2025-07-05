@@ -37,7 +37,7 @@
 
 <header class="site-header">
   <nav class="main-nav">
-    <button class="hamburger-menu" on:click={toggleMobileMenu} aria-label="Toggle navigation menu" aria-expanded={mobileMenuOpen}>
+    <button class="hamburger-menu" class:active={mobileMenuOpen} on:click={toggleMobileMenu} aria-label="Toggle navigation menu" aria-expanded={mobileMenuOpen}>
       <span></span>
       <span></span>
       <span></span>
@@ -49,39 +49,68 @@
       </a>
     </div>
     
-    <div class="desktop-nav-links btncont">
-      <a href="/"><button class="nav-button">Home</button></a>
-      <a href="/inventory"><button class="nav-button">Inventory</button></a>
-      <a href="/#about"><button class="nav-button">About Us</button></a>
-      <a href="/cart"><button class="nav-button">Cart</button></a>
-      <a href="/checkout"><button class="nav-button">Checkout</button></a>
-      <a href="/volunteer-sign-up"><button class="nav-button">Volunteer</button></a>
-      <a href="/donations"><button class="nav-button">Donate</button></a>
-      <a href="/policies"><button class="nav-button">Policies</button></a>
-    </div>
+    <nav class="glassmorphism-nav">
+      <a href="/" class="nav-pill {$page.url.pathname === '/' ? 'active' : ''}">Home</a>
+      <a href="/inventory" class="nav-pill {$page.url.pathname === '/inventory' ? 'active' : ''}">Inventory</a>
+      <a href="/#about" class="nav-pill {$page.url.pathname === '/#about' ? 'active' : ''}">About</a>
+      <a href="/cart" class="nav-pill {$page.url.pathname === '/cart' ? 'active' : ''}">Cart</a>
+      <a href="/checkout" class="nav-pill {$page.url.pathname === '/checkout' ? 'active' : ''}">Checkout</a>
+      <a href="/volunteer-sign-up" class="nav-pill {$page.url.pathname === '/volunteer-sign-up' ? 'active' : ''}">Volunteer</a>
+      <a href="/donations" class="nav-pill {$page.url.pathname === '/donations' ? 'active' : ''}">Donate</a>
+      <a href="/policies" class="nav-pill {$page.url.pathname === '/policies' ? 'active' : ''}">Policies</a>
+    </nav>
     
     <div class="mobile-nav" class:open={mobileMenuOpen}>
       <div class="mobile-nav-links">
-        <a href="/" on:click={closeMenu}><button class="nav-button mobile-nav-button">Home</button></a>
-        <a href="/inventory" on:click={closeMenu}><button class="nav-button mobile-nav-button">Inventory</button></a>
-        <a href="/#about" on:click={closeMenu}><button class="nav-button mobile-nav-button">About Us</button></a>
-        <a href="/cart" on:click={closeMenu}><button class="nav-button mobile-nav-button">Cart</button></a>
-        <a href="/checkout" on:click={closeMenu}><button class="nav-button mobile-nav-button">Checkout</button></a>
-        <a href="/volunteer-sign-up" on:click={closeMenu}><button class="nav-button mobile-nav-button">Volunteer</button></a>
-        <a href="/donations" on:click={closeMenu}><button class="nav-button mobile-nav-button">Donate</button></a>
-        <a href="/policies" on:click={closeMenu}><button class="nav-button mobile-nav-button">Policies</button></a>
+        <a href="/" on:click={closeMenu} class="mobile-nav-pill {$page.url.pathname === '/' ? 'active' : ''}">Home</a>
+        <a href="/inventory" on:click={closeMenu} class="mobile-nav-pill {$page.url.pathname === '/inventory' ? 'active' : ''}">Inventory</a>
+        <a href="/#about" on:click={closeMenu} class="mobile-nav-pill {$page.url.pathname === '/#about' ? 'active' : ''}">About</a>
+        <a href="/cart" on:click={closeMenu} class="mobile-nav-pill {$page.url.pathname === '/cart' ? 'active' : ''}">Cart</a>
+        <a href="/checkout" on:click={closeMenu} class="mobile-nav-pill {$page.url.pathname === '/checkout' ? 'active' : ''}">Checkout</a>
+        <a href="/volunteer-sign-up" on:click={closeMenu} class="mobile-nav-pill {$page.url.pathname === '/volunteer-sign-up' ? 'active' : ''}">Volunteer</a>
+        <a href="/donations" on:click={closeMenu} class="mobile-nav-pill {$page.url.pathname === '/donations' ? 'active' : ''}">Donate</a>
+        <a href="/policies" on:click={closeMenu} class="mobile-nav-pill {$page.url.pathname === '/policies' ? 'active' : ''}">Policies</a>
       </div>
     </div>
   </nav>
 </header>
 
-<main class="site-main">
+<main class="site-main" id="main-content">
   <slot />
 </main>
 
-
-
-<!-- <Footer />  Uncomment and use if you have a Footer.svelte component -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Contact Us</h3>
+      <p class="pcontact">Phone: 316-283-3442</p>
+      <p class="pcontact">Email: newtonbkreviews@sbcglobal.net</p>
+      <p class="pcontact">707 N Main ST, Newton, Kansas 67114</p>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/inventory">Inventory</a>
+        <a href="/#about">About Us</a>
+        <a href="/volunteer-sign-up">Volunteer</a>
+        <a href="/policies">Policies</a>
+      </div>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Connect With Us</h3>
+      <div class="footer-buttons">
+        <a href="tel:3162833442" class="btn btn-secondary">Call</a>
+        <a href="mailto:newtonbkreviews@sbcglobal.net" class="btn btn-secondary">Email</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Book ReViews. All proceeds support Harvey County charities.</p>
+  </div>
+</footer>
 
 <style>
     .main-nav {
@@ -105,42 +134,60 @@
     display: block; /* Prevents extra space below image */
   }
 
-  .desktop-nav-links {
+  /* Glassmorphism Navigation */
+  .glassmorphism-nav {
     display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-left: auto; /* Pushes it to the right */
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 4px;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+    gap: 2px;
+    margin-left: auto;
   }
 
-  .nav-button {
-    background-color: #FFFFFF;
-    color: black;
-    border: 1px solid #ccc; /* Added a subtle border */
-    border-radius: 0.2em;
-    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    width: 8em;
-    height: 2.5em;
-    box-shadow: 2px 2px .8em rgba(0,0,0,0.1); /* Softer shadow */
+  .nav-pill {
+    padding: 12px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    font-family: inherit;
-    font-size: 1em;
+    border: none;
+    background: transparent;
+    color: rgba(245, 245, 245, 0.7);
+    position: relative;
+    overflow: hidden;
   }
 
-  .nav-button:hover {
-    background-color: #e0e0e0; /* Lighter grey for hover */
-    transform: translateY(-2px);
-    box-shadow: 3px 3px 1em rgba(0,0,0,0.15);
+  .nav-pill:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(245, 245, 245, 0.9);
   }
-  
-  .nav-button:focus-visible { /* Using focus-visible for better accessibility */
-    outline: 2px solid blue;
+
+  .nav-pill:active {
+    transform: scale(0.95);
+  }
+
+  .nav-pill.active {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: var(--text-light);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+  }
+
+  .nav-pill:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
     outline-offset: 2px;
-  }
-
-  .nav-button:active {
-    background-color: #d0d0d0;
-    transform: translateY(0);
-    box-shadow: 1px 1px .5em rgba(0,0,0,0.1);
   }
 
   /* Mobile Navigation Styles */
@@ -175,12 +222,46 @@
     width: 100%;
   }
 
-  .mobile-nav-button {
-    width: 80%; /* Make buttons wider on mobile */
-    max-width: 300px; /* Max width for very wide screens if needed */
-    height: 3.5em; /* Slightly taller for easier tapping */
+  .mobile-nav-pill {
+    width: 80%;
+    max-width: 300px;
+    padding: 16px 24px;
     margin: 0.5em 0;
-    font-size: 1.1em;
+    border-radius: 50px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(245, 245, 245, 0.8);
+    text-align: center;
+    display: block;
+  }
+
+  .mobile-nav-pill:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(245, 245, 245, 1);
+  }
+
+  .mobile-nav-pill:active {
+    transform: scale(0.95);
+  }
+
+  .mobile-nav-pill.active {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: var(--text-light);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
   }
 
   /* Hamburger Menu - styles often in global styles.css but can be here too */
@@ -191,7 +272,7 @@
 
   /* Media query for mobile - controls visibility of desktop vs mobile nav */
   @media (max-width: 1240px) { /* Adjust breakpoint as needed */
-    .desktop-nav-links {
+    .glassmorphism-nav {
       display: none;
     }
     
