@@ -401,6 +401,19 @@ figcaption {
 }
 
 /* Volunteer Styles */
+
+input[type='checkbox'] {
+  cursor: pointer;
+}
+
+.age-verification-group {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+
 .volunteer-container {
     max-width: 1200px;
     margin: 0 auto;

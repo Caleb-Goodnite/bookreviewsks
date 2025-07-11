@@ -206,12 +206,12 @@
             <textarea id="message" bind:value={formData.message} rows="3"></textarea>
           </div>
 
-          <div class="form-group">
-            <label class="flex items-center space-x-2 text-white font-normal">
-              <input type="checkbox" id="is18" bind:checked={isAgeVerified} class="form-checkbox accent-[#8b7d6b] w-5 h-5 mr-2" />
-              <span>I confirm that I am 18 years of age or older.</span>
-            </label>
-          </div>
+          <div class="age-verification-group">
+  <input type="checkbox" id="is18" bind:checked={isAgeVerified} class="form-checkbox accent-brown" />
+  <label for="is18" class="text-white font-normal select-none cursor-pointer">
+    I confirm that I am 18 years of age or older.
+  </label>
+</div>
           
           <!-- Update the submit button to show loading state -->
           <button type="submit" class="submit-btn" disabled={submitting}>
