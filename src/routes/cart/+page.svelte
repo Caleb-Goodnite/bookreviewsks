@@ -68,12 +68,8 @@
             
             // Ensure quantity doesn't exceed stock
             if (newQuantity > availableStock) {
-                // Show immediate alert to user
-                alert(`Sorry, only ${availableStock} copies of "${bookInCart.title}" are in stock.`);
-                
-                // Reset the quantity to available stock
-                bookInCart.quantity = availableStock;
-                
+                // Auto-correct to max available (or 1 if none)
+                bookInCart.quantity = availableStock > 0 ? availableStock : 1;
                 // Add to stock errors if not already there
                 if (!stockErrors.some(error => error.id === bookId)) {
                     stockErrors.push({
@@ -129,14 +125,14 @@
     <div class="book-grid">
         {#each cart as book}
             <div class="book">
-                <h3 style="text-align: center;">{book.title}</h3>
+                <h3>{book.title}</h3>
                 <p>Author: {book.author}</p>
-                <p>Price: ${book.Price}</p>
-                <p>
-                    Quantity: 
-                    <input type="number" min="1" bind:value={book.quantity} on:input={() => updateQuantity(book.id, book.quantity)} />
-                </p>
-                <button class="delete-btn" on:click={() => removeFromCart(book.id)}>Remove</button>
+                <p>Price: <span class="cart-price">${book.Price}</span></p>
+                <div class="cart-quantity-row">
+                    <label for="qty-{book.id}">Quantity:</label>
+                    <input id="qty-{book.id}" type="number" min="1" max={book.stock} bind:value={book.quantity} on:input={() => updateQuantity(book.id, book.quantity)} class="cart-qty-input" />
+                </div>
+                <button class="cart-remove-btn" on:click={() => removeFromCart(book.id)}>Remove</button>
             </div>
         {/each}
     </div>
@@ -148,12 +144,37 @@
 {/if}
 
 <style>
+    /* --- Card Grid (matches inventory) --- */
     .book-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
+        grid-template-columns: repeat(3, 1fr); /* Force 3 columns */
+        gap: 20px;
         padding: 20px;
+        max-width: 1200px; /* Set a max width */
+        margin: 0 auto; /* Centers the grid */
     }
+    @media (max-width: 900px) {
+        .book-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+        }
+    }
+    @media (max-width: 600px) {
+        .book-grid {
+            grid-template-columns: 1fr; /* 1 column on small screens */
+        }
+    }
+    @media (max-width: 900px) {
+        .book-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media (max-width: 600px) {
+        .book-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* --- Card Style (matches inventory) --- */
     .book {
         border: 1px solid #ccc;
         padding: 15px;
@@ -162,47 +183,118 @@
         color: white;
         font-family: monospace;
     }
-    .delete-btn {
+
+    /* --- Cart-specific controls --- */
+    .cart-quantity-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 8px 0 18px 0;
+        font-family: monospace;
+        font-size: 1rem;
+        color: #fff;
+    }
+    .cart-quantity-row label {
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-right: 4px;
+        font-family: monospace;
+    }
+    .cart-qty-input {
+        width: 60px;
+        padding: 6px 10px;
+        border: 1px solid #8b7d6b;
+        border-radius: 4px;
+        background: #222;
+        color: #fff;
+        font-size: 1rem;
+        text-align: center;
+        font-family: monospace;
+        margin: 0 auto;
         display: block;
-        background-color: red;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
+    }
+    .cart-remove-btn {
+        background-color: #dc3545;
         color: white;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 4px;
         cursor: pointer;
+        font-size: 1rem;
+        margin-top: 14px;
+        font-family: monospace;
+        display: block;
         margin-left: auto;
         margin-right: auto;
+        transition: background 0.2s;
     }
-    .delete-btn:hover {
-        background-color: darkred;
+    .cart-remove-btn:hover {
+        background-color: #b02a37;
+    }
+
+    /* --- Cart price and summary --- */
+    .cart-price {
+        color: #fff;
+        font-weight: bold;
+    }
+    .cart-summary {
+        background: rgba(58, 54, 51, 0.8);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        margin: 32px auto 0 auto;
+        padding: 24px 16px;
+        max-width: 420px;
+        text-align: center;
+        border: 1px solid #8b7d6b;
+        color: #fff;
+    }
+    .pinfo {
+        font-size: 1.3rem;
+        color: #fff;
+        margin-bottom: 20px;
+        text-align: center;
+        text-decoration: underline;
     }
     .checkout-btn {
-        display: block;
-        background-color: #f5a623;
+        background-color: #6d6253;
         border: none;
-        padding: 10px;
+        color: #e6dfd3;
         border-radius: 5px;
-        color: white;
         cursor: pointer;
-        margin-left: auto;
-        margin-right: auto;
-        width: 12rem;
-        height: 3rem;
-        font-size: 2rem;
-        padding: .2rem ;
+        width: 100%;
+        height: 2.6rem;
+        font-size: 1.1rem;
+        padding: 0.2rem;
+        margin-top: 10px;
+        transition: background 0.2s;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     }
     .checkout-btn:hover {
-        background-color: #f58f20;
+        background-color: #8b7d6b;
     }
     .stock-error {
-        background-color: #ff6b6b;
-        color: white;
+        background-color: rgba(220, 53, 69, 0.14);
+        color: #fff;
         padding: 15px;
-        border-radius: 5px;
-        margin: 15px 0;
+        border-radius: 7px;
+        margin: 18px 0 0 0;
         font-family: monospace;
+        border: 1px solid #dc3545;
+        text-align: center;
     }
     .stock-error h3 {
         margin-top: 0;
+        color: #fff;
+    }
+    @media (max-width: 700px) {
+        .book-grid {
+            grid-template-columns: 1fr;
+            padding: 0;
+        }
+        .cart-summary {
+            max-width: 98vw;
+        }
     }
 </style>

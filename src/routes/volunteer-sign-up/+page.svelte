@@ -19,6 +19,7 @@
       message: ''
     };
     
+    let isAgeVerified = false;
     let submitted = false;
     let error = null;
     let submitting = false;
@@ -29,7 +30,10 @@
         error = "Please fill out all required fields";
         return;
       }
-      
+      if (!isAgeVerified) {
+        error = "You must confirm that you are 18 years of age or older.";
+        return;
+      }
       submitting = true;
       
       try {
@@ -39,7 +43,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(formData)
+          body: JSON.stringify({ ...formData, isAgeVerified })
         });
         
         if (!response.ok) {
@@ -202,9 +206,11 @@
             <textarea id="message" bind:value={formData.message} rows="3"></textarea>
           </div>
 
-          <div class="checkbox" style="padding-bottom: 1.1rem;">
-            <input type="checkbox" id="is18" required>
-            <label for="is18">I confirm that I am 18 years of age or older.</label>
+          <div class="form-group">
+            <label class="flex items-center space-x-2 text-white font-normal">
+              <input type="checkbox" id="is18" bind:checked={isAgeVerified} class="form-checkbox accent-[#8b7d6b] w-5 h-5 mr-2" />
+              <span>I confirm that I am 18 years of age or older.</span>
+            </label>
           </div>
           
           <!-- Update the submit button to show loading state -->

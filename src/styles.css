@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    background-color: rgb(156, 144, 116);
+    background-color: #494032;
     font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
     margin: 0;
     padding: 0;
@@ -601,8 +601,8 @@ figcaption {
 
 /* Footer Styles */
 footer {
-    background-color: #3a3633;
-    color: white;
+    background-color: #232323 !important;
+    color: #fff;
     padding: 40px 20px 20px;
     margin-top: 60px;
     border-top: 5px solid #8b7d6b;
@@ -844,7 +844,8 @@ footer {
 
 /* Navigation - Updated to fix button centering */
 nav {
-    background-color: rgb(148, 122, 82);
+    background-color: #232323 !important;
+    color: #fff !important;
     padding: 1em;
     display: flex;
     align-items: center;
