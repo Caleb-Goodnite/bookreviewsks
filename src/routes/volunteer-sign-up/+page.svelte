@@ -201,6 +201,11 @@
             <label for="message">Additional Information</label>
             <textarea id="message" bind:value={formData.message} rows="3"></textarea>
           </div>
+
+          <div class="checkbox" style="padding-bottom: 1.1rem;">
+            <input type="checkbox" id="is18" required>
+            <label for="is18">I confirm that I am 18 years of age or older.</label>
+          </div>
           
           <!-- Update the submit button to show loading state -->
           <button type="submit" class="submit-btn" disabled={submitting}>
