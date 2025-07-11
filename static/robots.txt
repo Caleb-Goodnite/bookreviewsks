@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bookreviewsks.netlify.app/sitemap.xml
+Disallow: /api
+
+Sitemap: https://bookreviewsks.vercel.app/sitemap.xml
