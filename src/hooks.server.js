@@ -30,7 +30,7 @@ export async function handle({ event, resolve }) {
     response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
   
     // Uncomment if your site uses HTTPS and you want HSTS
-    // response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+    response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   
     return response;
   }
