@@ -193,7 +193,7 @@
             </div>
             <div class="carousel-slide">
                 <img src="/images/responderdonation.jpg" alt="Book ReViews donating to Harvey County First Responders for Food Baskets" class="carousel-img">
-                <p class="caption">Book Reviews supports first responders’ Christmas food basket program.</p>
+                <p class="caption">Donations to First Responders for local needs during the holiday season.</p>
             </div>
             <div class="carousel-slide">
                 <img src="/images/mm.jpeg" alt="Cheryl Major and Joe Major, Book ReViews Managers." class="carousel-img">
