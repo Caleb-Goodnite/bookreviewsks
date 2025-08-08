@@ -25,7 +25,7 @@
     <p>We gratefully accept donations of gently used books, DVDs, CDs, and puzzles during our regular business hours. Your donations are vital to our inventory and our ability to support local charities.</p>
     <ul>
       <li><strong>Accepted Items:</strong> Books in good condition (all genres), DVDs, Blu-rays, music CDs, and complete puzzles.</li>
-      <li><strong>Items We Cannot Accept:</strong> We generally cannot accept encyclopedias, textbooks older than 5 years, magazines, VHS tapes, cassette tapes, or items that are damaged, moldy, or have missing parts. Please check with staff if you are unsure.</li>
+      <li><strong>Items We Cannot Accept:</strong> We generally cannot accept encyclopedias, VHS tapes, and cassette tapes. Please check with staff if you are unsure.</li>
       <li><strong>Donation Receipts:</strong> We can provide a receipt for your donation for tax purposes upon request. We do not assign a monetary value to donated items.</li>
     </ul>
   </section>
@@ -34,9 +34,7 @@
     <h2>In-Store Conduct</h2>
     <p>To ensure a welcoming environment for everyone:</p>
     <ul>
-      <li>Please supervise children at all times.</li>
       <li>Handle books and store items with care.</li>
-      <li>No smoking, vaping, food, or uncovered drinks are permitted in the main browsing areas.</li>
       <li>We reserve the right to ask anyone behaving disruptively to leave the premises.</li>
     </ul>
   </section>

@@ -84,8 +84,6 @@
       <ul>
         <li>Help raise funds for local charities</li>
         <li>Meet fellow book lovers</li>
-        <li>Gain retail and customer service experience</li>
-        <li>Access to special book events</li>
         <li>Flexible scheduling to fit your availability</li>
       </ul>
       
@@ -184,10 +182,6 @@
               <label>
                 <input type="checkbox" on:change={() => handleInterestChange('book-organization')}>
                 Book Organization
-              </label>
-              <label>
-                <input type="checkbox" on:change={() => handleInterestChange('special-events')}>
-                Special Events
               </label>
               <label>
                 <input type="checkbox" on:change={() => handleInterestChange('inventory')}>
