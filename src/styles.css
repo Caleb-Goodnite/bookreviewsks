@@ -832,6 +832,13 @@ footer {
     }
 }
 
+/* Mobile-specific styles for managers image */
+@media (max-width: 768px) {
+    #managers-img {
+        object-position: 50% 60% !important; /* Adjust vertical centering */
+    }
+}
+
 @media (max-width: 480px) {
     /* Store Interior */
     #store-interior {

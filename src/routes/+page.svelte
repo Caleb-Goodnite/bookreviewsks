@@ -196,7 +196,7 @@
                 <p class="caption">Donations to First Responders for local needs during the holiday season.</p>
             </div>
             <div class="carousel-slide">
-                <img src="/images/mm.jpeg" alt="Cheryl Major and Joe Major, Book ReViews Managers." class="carousel-img">
+                <img src="/images/mm.jpeg" alt="Cheryl Major and Joe Major, Book ReViews Managers." class="carousel-img" id="managers-img">
                 <p class="caption">Cheryl Major and Joe Major, Book ReViews Managers</p>
             </div>
             <div class="carousel-slide">
