@@ -835,7 +835,7 @@ footer {
 /* Mobile-specific styles for managers image */
 @media (max-width: 768px) {
     #managers-img {
-        object-position: 50% 55% !important; /* Slight vertical adjustment */
+        object-position: 50% 48% !important; /* Move image up slightly */
     }
 }
 
