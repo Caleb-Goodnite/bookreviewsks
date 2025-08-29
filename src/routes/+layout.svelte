@@ -7,10 +7,22 @@
 
   function toggleMobileMenu() {
     mobileMenuOpen = !mobileMenuOpen;
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
   }
 
   function closeMenu() {
     mobileMenuOpen = false;
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
   }
 
   // SEO metadata that will be used across the site
@@ -78,10 +90,6 @@
 <main class="site-main">
   <slot />
 </main>
-
-
-
-<!-- <Footer />  Uncomment and use if you have a Footer.svelte component -->
 
 <style>
     .main-nav {
@@ -153,9 +161,12 @@
     height: 100%;
     background-color: rgba(58, 54, 51, 0.95);
     z-index: 100; /* High z-index to be on top */
-    padding-top: 5rem; /* Space for status bar and some breathing room */
+    padding: 5rem 0 2rem; /* Add padding to top and bottom */
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
+    overflow-y: auto; /* Enable scrolling for the menu */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    box-sizing: border-box;
   }
 
   .mobile-nav.open {
@@ -170,9 +181,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem; /* Reduced gap for mobile */
-    padding: 1rem;
+    gap: 0.8rem; /* Slightly reduced gap to fit more items */
+    padding: 0 1rem 2rem; /* Add bottom padding */
     width: 100%;
+    min-height: 100%;
   }
 
   .mobile-nav-button {

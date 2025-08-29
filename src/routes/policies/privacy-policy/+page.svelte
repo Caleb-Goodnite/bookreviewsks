@@ -19,7 +19,7 @@
     <p>Personally identifiable information, such as your name, shipping address, email address, and telephone number, and demographic information, such as your age (for volunteer eligibility), gender, hometown, and interests, that you voluntarily give to us when you make a purchase, sign up for our newsletter, apply to volunteer, make a donation, or when you choose to participate in various activities related to the Site (such as contact forms).</p>
 
     <h3>Financial Data</h3>
-    <p>Financial information, such as data related to your payment method (e.g., valid credit card number, card brand, expiration date) that we may collect when you purchase goods or make a donation from our Site or in-store. We store only very limited, if any, financial information that we collect. Otherwise, all financial information is processed and stored by our payment processor (Square), and you are encouraged to review their privacy policy and contact them directly for responses to your questions. We do not store full credit card numbers on our servers.</p>
+    <p>Financial information, such as data related to your payment method (e.g., valid credit card number, card brand, expiration date) that we may collect when you purchase goods or make a donation from our Site or in-store. We store only very limited, if any, financial information that we collect. Otherwise, all financial information is processed and stored by our payment processor (Square), and you are encouraged to review <a target="_blank" href="https://squareup.com/us/en/legal/general/privacy-no-account" style="color: #2980b9;">their privacy policy</a> and contact them directly for responses to your questions. We do not store full credit card numbers on our servers.</p>
 
     <h3>Data From Online Forms</h3>
     <p>Information you provide when filling out forms on our website, such as volunteer applications, contact forms, or newsletter subscriptions.</p>
@@ -82,7 +82,7 @@
 
   <section>
     <h2>Changes to This Privacy Policy</h2>
-    <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on the Site and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page. Last updated: June 2024.</p>
+    <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on the Site and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page. Last updated: August 28, 2025.</p>
   </section>
 
   <section>

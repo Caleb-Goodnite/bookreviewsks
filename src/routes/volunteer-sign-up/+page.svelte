@@ -97,10 +97,6 @@
           <h3>Book Organization</h3>
           <p>Sort, categorize, and shelve books to maintain our organized and welcoming environment.</p>
         </div>
-        <div class="role-card">
-          <h3>Special Events</h3>
-          <p>Assist with book sales, author visits, and community outreach events.</p>
-        </div>
       </div>
     </div>
     

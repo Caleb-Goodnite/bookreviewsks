@@ -14,9 +14,9 @@
     <h2>Returns and Exchanges</h2>
     <p>Purchases made at Book ReViews are generally considered final, supporting our charitable mission. However, we understand that issues can arise:</p>
     <ul>
-      <li><strong>Damaged or Mislabeled Items:</strong> If you purchase an item that is significantly damaged (beyond any noted condition) or mislabeled, please bring it to our attention within 7 days of purchase with your receipt. We may offer an exchange or store credit at our discretion.</li>
       <li><strong>No Cash Refunds:</strong> We typically do not offer cash refunds.</li>
       <li><strong>Used Book Condition:</strong> Please inspect used books carefully before purchase. We do our best to note significant wear and tear, but variations are inherent in used items.</li>
+      <li><strong>Book Trades:</strong>We <strong style="color:#333;">DO NOT</strong> accept trades of any kind.</li>
     </ul>
   </section>
 
@@ -27,7 +27,7 @@
       <li><strong>Accepted Items:</strong> Books in good condition (all genres), DVDs, Blu-rays, music CDs, and complete puzzles.</li>
       <li><strong>Items We Cannot Accept:</strong> We generally cannot accept encyclopedias, VHS tapes, and cassette tapes. Please check with staff if you are unsure.</li>
       <li><strong>Donation Receipts:</strong> We can provide a receipt for your donation for tax purposes upon request. We do not assign a monetary value to donated items.</li>
-    </ul>
+      <li><strong>Book Donation Policy:</strong> Please call us at (316) 283-3442 before bringing in book donations to confirm their acceptability. We appreciate advance notice and reserve the right to decline any donations at our discretion.</li>    </ul>
   </section>
 
   <section>
@@ -43,7 +43,7 @@
     <h2>Pricing and Payment</h2>
     <ul>
       <li>Prices are as marked. We strive to offer fair and affordable pricing.</li>
-      <li>We accept cash, major credit/debit cards, and mobile payments processed via Square.</li>
+      <li>We accept cash, major credit/debit cards, and online payments processed via Square.</li>
       <li>Sales tax will be applied as required by Kansas state law.</li>
     </ul>
   </section>
@@ -63,7 +63,7 @@
 
   <section>
     <h2>Contact Us</h2>
-    <p>If you have any questions about our store policies, please feel free to speak with a volunteer or contact us at (316) 283-3442 or via our website's contact form.</p>
+    <p>If you have any questions about our store policies, please feel free to speak with a volunteer or contact us at (316) 283-3442.</p>
   </section>
 
 </div>

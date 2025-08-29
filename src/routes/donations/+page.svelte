@@ -364,13 +364,12 @@
         <li>Maintain our store and operations</li>
         <li>Expand our inventory of quality books</li>
         <li>Support local charitable organizations</li>
-        <li>Create community programs and events</li>
       </ul>
     </div>
     
     <div class="donation-card">
       <h2>Your Impact</h2>
-      <p>In the past year, with the help of generous donors like you, we've been able to:</p>
+      <p>With the help of generous donors like you, we've been able to:</p>
       
       <div class="impact-stats">
         <div class="stat-card">
@@ -399,6 +398,7 @@
   <div class="donation-card">
     <h2>Book Donations</h2>
     <p>We accept gently used books of all genres in good condition at our store.</p>
+    <p><strong>Please note:</strong> Call us at (316) 283-3442 before bringing in book donations. We appreciate advance notice and may need to decline certain items.</p>
     <p><strong>Drop-off Hours:</strong> Monday-Saturday, 9:30 AM - 5:30 PM</p>
     <p><strong>Location:</strong> 707 N Main ST, Newton, Kansas 67114</p>
   </div>
@@ -432,6 +432,12 @@
         class:selected={selectedAmount === 100} 
         on:click={() => selectAmount(100)}
       >$100</button>
+      <button 
+      type="button"
+      class="donation-amount" 
+      class:selected={selectedAmount === 250} 
+      on:click={() => selectAmount(250)}
+    >$250</button>
     </div>
         
     <div class="custom-amount">

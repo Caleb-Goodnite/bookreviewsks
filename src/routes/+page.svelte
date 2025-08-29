@@ -129,12 +129,12 @@
     "@type": "LocalBusiness",
     "name": "Book ReViews",
     "image": "/images/storefront.jpg",
-    "@id": "https://bookreviewsks.netlify.app",
-    "url": "https://bookreviewsks.netlify.app",
+    "@id": "https://bookreviewsks.vercel.app",
+    "url": "https://bookreviewsks.vercel.app",
     "telephone": "316-283-3442",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "707 N Main ST",
+      "streetAddress": "707 N Main St",
       "addressLocality": "Newton",
       "addressRegion": "KS",
       "postalCode": "67114",
@@ -171,6 +171,27 @@
     <img src="/images/storefront.jpg" alt="Book ReViews Store from front" id="storefront">
 </div>
 
+
+<style>
+    @media (min-width: 769px) {
+        .directions-button {
+            display: none;
+        }
+    }
+
+    .directions-button {
+        display: block;
+        width: fit-content;
+        margin: 1rem auto 2rem;
+        text-decoration: none;
+    }
+    
+    .directions-button .nav-button {
+        width: 10em;
+        margin: 0 auto;
+    }
+</style>
+
 <div class="imgcont" id="brlogoimgcont">
     <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
     <img src="/images/brlogo.jpg" alt="Book ReViews Logo" class="brlogoimg">
@@ -184,8 +205,15 @@
     <h2>About Us</h2>
     <p style="font-size: 1.5em">We sell used and vintage books to support charitable organizations in Harvey County.</p>
     
-    <!-- Image Carousel -->
-    <div class="carousel-container">
+    <!-- Image Carousel - Hidden on mobile -->
+    <div class="carousel-container" style="display: none;">
+    <style>
+      @media (min-width: 768px) {
+        .carousel-container {
+          display: block !important;
+        }
+      }
+    </style>
         <div class="carousel-slides">
             <div class="carousel-slide">
                 <img src="/images/salvationdonation.jpg" alt="Book ReViews manager Cheryl Major donating to the Salvation Army in Newton, Kansas" class="carousel-img">
@@ -241,7 +269,7 @@
             <h3>Contact Us</h3>
             <p class="pcontact">Phone: 316-283-3442</p>
             <p class="pcontact">Email: newtonbkreviews@sbcglobal.net</p>
-            <p class="pcontact">707 N Main ST, Newton, Kansas 67114</p>
+            <p class="pcontact">707 N Main St Newton, Kansas 67114</p>
         </div>
         
         <div class="footer-section">
